@@ -1,0 +1,41 @@
+# IntelliJ IDEA
+.idea/
+*.iml
+.idea/workspace.xml
+.idea/tasks.xml
+
+# Build artifacts
+/out/
+/target/
+/build/
+
+# Temporary and system files
+*.tmp
+*.log
+.DS_Store
+thumbs.db
+
+# User-specific editor and linting settings
+.editorconfig
+.eslintrc
+.prettierrc
+
+# Dependency directories
+/node_modules/
+/venv/
+
+# Configuration files
+*.properties
+*.config
+*.yml
+*.json
+
+# Generated files
+*.class
+*.jar
+*.war
+
+# Project logs and cache
+/logs/
+.idea/.name
+.idea/misc.xml
