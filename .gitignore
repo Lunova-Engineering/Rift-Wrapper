@@ -31,8 +31,8 @@ thumbs.db
 *.json
 
 # Include resource files / directories
-!/src/main/resources/
-!/src/test/resources/
+!/src/main/resources/*
+!/src/test/resources/*
 
 # Generated files
 *.class
