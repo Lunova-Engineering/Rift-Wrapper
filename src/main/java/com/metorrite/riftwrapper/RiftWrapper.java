@@ -1,8 +1,11 @@
 package com.metorrite.riftwrapper;
 
+
 public class RiftWrapper {
 
-    public static void main(String[] args) {
-        System.out.println("First Commit, testing build structure and project structure!");
+    private static String RIOT_API;
+
+    public static void setRiotApi(String riotApi) {
+        RIOT_API = riotApi;
     }
 }
