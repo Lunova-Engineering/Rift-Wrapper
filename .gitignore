@@ -30,6 +30,10 @@ thumbs.db
 *.yml
 *.json
 
+# Include resource files / directories
+!/src/main/resources/
+!/src/test/resources/
+
 # Generated files
 *.class
 *.jar

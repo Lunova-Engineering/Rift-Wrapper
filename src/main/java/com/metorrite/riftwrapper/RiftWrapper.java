@@ -1,4 +1,4 @@
-package com.riftwrapper;
+package com.metorrite.riftwrapper;
 
 public class RiftWrapper {
 
