@@ -30,4 +30,4 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ---
 
-*This project is heavily inspired by the [Orianna Repository](https://github.com/meraki-analytics/orianna)https://github.com/meraki-analytics/orianna).*
+*This project is heavily inspired by the [Orianna Repository](https://github.com/meraki-analytics/orianna).
