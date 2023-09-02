@@ -1,14 +1,20 @@
 package com.metorrite.riftwrapper;
 
 import com.metorrite.riftwrapper.data.Region;
+import com.metorrite.riftwrapper.data.types.Summoner;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class RifWrapperTest {
 
     public static void main(String[] args) {
-        RiftWrapper.setRiotApiKey("RGAPI-c00927b6-4ebb-48ae-92b8-8b75366d132b");
+        RiftWrapper.setRiotApiKey("RGAPI-87f35cce-374b-46de-8427-bcb993d58e94");
         RiftWrapper.setRegion(Region.NORTH_AMERICA);
-        RiftWrapper.getData("Ozc34UxsQzEE-RmqbnrVnuWsCYHfmYMXNwBSyK0Nq6ls4Nd4-RcDCTeGbaKdviqOKZI3_jeQ80LeFg", "https://americas.api.riotgames.com/lol/match/v5/matches/by-puuid/");
+        Summoner summoner = RiftWrapper.getSummonerByName("Metorrite");
+        System.out.println(summoner.getSummonerLevel());
+        Summoner summoner1 = RiftWrapper.getSummonerByName("wooga wooga wooga");
+        System.out.println(summoner1.getSummonerLevel());
     }
 }

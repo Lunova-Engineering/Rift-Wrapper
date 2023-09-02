@@ -1,23 +1,21 @@
 package com.metorrite.riftwrapper.network;
 
-import com.squareup.okhttp.OkHttpClient;
-import com.squareup.okhttp.Request;
-import com.squareup.okhttp.Response;
-import com.squareup.okhttp.ResponseBody;
+
+
+import com.metorrite.riftwrapper.data.exceptions.SummonerNotFoundException;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
+import okhttp3.ResponseBody;
 
 import java.io.IOException;
 
 public class HttpRequest {
 
-    public static String sendDataRequest(String requestUrl, HttpMethodType methodType, String apiKey) throws IOException {
+    public static String sendDataRequest(String requestUrl, String apiKey) throws IOException {
         OkHttpClient client = new OkHttpClient();
         Request.Builder requestBuilder = new Request.Builder().url(requestUrl).addHeader("X-Riot-Token", apiKey);
 
-        if (methodType.equals(HttpMethodType.POST)) {
-            // Add POST request handling here
-        } else if (methodType.equals(HttpMethodType.PUT)) {
-            // Add PUT request handling here
-        } // Add other HTTP methods as needed
 
         Request request = requestBuilder.build();
         Response response = client.newCall(request).execute();
@@ -26,7 +24,7 @@ public class HttpRequest {
             if (response.body() != null) {
                 response.body().close();
             }
-            throw new IOException("Unexpected code " + response);
+            throw new IOException("Unexpected response -[CODE: " + response.code() + " / MESSAGE: " + response.message() +"]");
         }
 
         try (ResponseBody responseBody = response.body()) {
