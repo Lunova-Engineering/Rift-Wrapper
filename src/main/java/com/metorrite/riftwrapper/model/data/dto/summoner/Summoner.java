@@ -1,4 +1,4 @@
-package com.metorrite.riftwrapper.data.types;
+package com.metorrite.riftwrapper.model.data.dto.summoner;
 
 public class Summoner {
     private String id;

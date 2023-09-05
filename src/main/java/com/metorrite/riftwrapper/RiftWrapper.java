@@ -1,24 +1,15 @@
 package com.metorrite.riftwrapper;
 
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonParser;
-import com.metorrite.riftwrapper.data.Region;
-import com.metorrite.riftwrapper.data.types.Summoner;
-import com.metorrite.riftwrapper.network.HttpMethodType;
-import com.metorrite.riftwrapper.network.HttpRequest;
-import com.metorrite.riftwrapper.network.SummonerAPI;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
-import java.io.IOException;
+import com.metorrite.riftwrapper.model.api.LeagueApi;
+import com.metorrite.riftwrapper.model.api.MatchAPI;
+import com.metorrite.riftwrapper.network.Region;
+import com.metorrite.riftwrapper.model.data.dto.summoner.Summoner;
+import com.metorrite.riftwrapper.model.api.SummonerAPI;
 
 public class RiftWrapper {
 
-    public static final Logger LOGGER = LoggerFactory.getLogger(RiftWrapper.class);
-    private static String RIOT_API_KEY;
+    private static String RIOT_API_KEY = "";
 
     private static Region REGION = Region.NORTH_AMERICA;
 
@@ -54,4 +45,11 @@ public class RiftWrapper {
         return SummonerAPI.getSummonerData("", encryptedId, RIOT_API_KEY);
     }
 
+    public static String getLeagueData() {
+        return LeagueApi.getLeagueData("", RIOT_API_KEY);
+    }
+
+    public static String getMatchData() {
+        return MatchAPI.getMatchById("NA1_4764187015", RIOT_API_KEY);
+    }
 }

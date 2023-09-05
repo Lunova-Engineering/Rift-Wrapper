@@ -1,4 +1,4 @@
-package com.metorrite.riftwrapper.data;
+package com.metorrite.riftwrapper.network;
 
 public enum Region {
     BRAZIL("br1.api.riotgames.com", "BR", "pt_BR"),
