@@ -11,6 +11,9 @@ public class SummonerDTO extends DataTransferObject {
     private long revisionDate;
     private long summonerLevel;
 
+    public SummonerDTO() {
+
+    }
     public SummonerDTO(String id, String accountId, String puuid, String name, long profileIconId, long revisionDate, long summonerLevel) {
         this.id = id;
         this.accountId = accountId;

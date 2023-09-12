@@ -1,26 +1,23 @@
 package com.lunova.riftwrapper.model.user.summoner;
 
-import com.google.common.collect.ImmutableMap;
-import com.lunova.riftwrapper.model.api.SummonerAPI;
-import com.lunova.riftwrapper.model.dto.summoner.SummonerDTO;
-
 public class Summoner {
-    private String id;
-    private String accountId;
-    private String puuid;
-    private String name;
-    private long profileIconId;
-    private long revisionDate;
-    private long summonerLevel;
+    private final String id;
+    private final String accountId;
+    private final String puuid;
+    private final String name;
+    private final long profileIconId;
+    private final long revisionDate;
+    private final long summonerLevel;
 
-    public Summoner(String id, String accountId, String puuid, String name, long profileIconId, long revisionDate, long summonerLevel) {
-        this.id = id;
-        this.accountId = accountId;
-        this.puuid = puuid;
-        this.name = name;
-        this.profileIconId = profileIconId;
-        this.revisionDate = revisionDate;
-        this.summonerLevel = summonerLevel;
+    // Private constructor: the only way to create a Summoner is via the Builder.
+    private Summoner(Builder builder) {
+        this.id = builder.id;
+        this.accountId = builder.accountId;
+        this.puuid = builder.puuid;
+        this.name = builder.name;
+        this.profileIconId = builder.profileIconId;
+        this.revisionDate = builder.revisionDate;
+        this.summonerLevel = builder.summonerLevel;
     }
 
     public String getId() {
@@ -51,36 +48,54 @@ public class Summoner {
         return summonerLevel;
     }
 
-    /**
-     * TODO
-     * Add support for match history
-     * Add support for rankings
-     * Add support for champion masteries
-     */
-
     public static class Builder {
+        private String id;
+        private String accountId;
+        private String puuid;
+        private String name;
+        private long profileIconId;
+        private long revisionDate;
+        private long summonerLevel;
 
-        private SummonerDTO summonerDto;
-        public enum KEY {
-            ID,
-            ACCOUNT_ID,
-            PUUID,
-            NAME;
+        public Builder setId(String id) {
+            this.id = id;
+            return this;
         }
 
-        public Builder(SummonerDTO summonerDto) {
-            this.summonerDto = summonerDto;
-        }
-        private String id, accountId, puuid, name;
-        private final ImmutableMap.Builder<KEY, String> VALUES = ImmutableMap.builder();
-
-
-        public static Summoner.Builder withName(String name) {
-            return new Builder(SummonerAPI.withName(name));
+        public Builder setAccountId(String accountId) {
+            this.accountId = accountId;
+            return this;
         }
 
-        public Summoner get() {
-            return new Summoner(summonerDto.getId(), summonerDto.getAccountId(), summonerDto.getPuuid(), summonerDto.getName(), summonerDto.getProfileIconId(), summonerDto.getRevisionDate(), summonerDto.getSummonerLevel());
+        public Builder setPuuid(String puuid) {
+            this.puuid = puuid;
+            return this;
+        }
+
+        public Builder setName(String name) {
+            this.name = name;
+            return this;
+        }
+
+        public Builder setProfileIconId(long profileIconId) {
+            this.profileIconId = profileIconId;
+            return this;
+        }
+
+        public Builder setRevisionDate(long revisionDate) {
+            this.revisionDate = revisionDate;
+            return this;
+        }
+
+        public Builder setSummonerLevel(long summonerLevel) {
+            this.summonerLevel = summonerLevel;
+            return this;
+        }
+
+        // Other setters returning 'this' for method chaining...
+
+        public Summoner build() {
+            return new Summoner(this);
         }
     }
 }

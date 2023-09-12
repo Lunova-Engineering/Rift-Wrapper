@@ -8,7 +8,6 @@ import java.util.List;
 public class EndpointBuilder {
 
     private final String baseUrl;
-    private String endpoint;
     private final List<String> parameters = new ArrayList<>();
 
     public EndpointBuilder(String baseUrl) {
@@ -16,8 +15,7 @@ public class EndpointBuilder {
     }
 
     public EndpointBuilder withEndpoint(String endpoint) {
-        this.endpoint = endpoint;
-        return this;
+        return withParameter(endpoint);
     }
 
     public EndpointBuilder withParameter(String parameter) {
@@ -30,8 +28,11 @@ public class EndpointBuilder {
         builder.append("https://");
         builder.append(RiftWrapper.getRegion().getRoutingValue()).append("/");
         builder.append(baseUrl).append("/");
-        builder.append(endpoint).append("/");
         parameters.forEach(parameter -> builder.append(parameter).append("/"));
+        parameters.clear();
+        System.out.println(builder.toString());
         return builder.toString();
     }
+
+
 }
