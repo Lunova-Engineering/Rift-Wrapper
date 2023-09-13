@@ -1,4 +1,4 @@
-package com.lunova.riftwrapper.model.dto.common;
+package com.lunova.riftwrapper.model.data;
 
 public enum Region {
     BRAZIL("br1.api.riotgames.com", "BR", "pt_BR"),

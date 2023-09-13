@@ -1,17 +1,23 @@
-package com.lunova.riftwrapper.model.api;
+package com.lunova.riftwrapper.model.api.impl;
 
-import com.lunova.riftwrapper.RiftWrapper;
-import com.lunova.riftwrapper.model.dto.summoner.SummonerDTO;
-import com.lunova.riftwrapper.model.transformers.SummonerTransformer;
-import com.lunova.riftwrapper.model.user.summoner.Summoner;
-import com.lunova.riftwrapper.network.HttpRequest;
-import com.lunova.riftwrapper.utilities.JsonUtility;
+import com.lunova.riftwrapper.model.api.EndpointBuilder;
+import com.lunova.riftwrapper.model.api.RiotAPI;
 
-public class SummonerAPI {
+public class SummonerAPI extends RiotAPI {
     private static final String BASE_URL = "lol/summoner/v4/summoners";
     private static final EndpointBuilder builder = new EndpointBuilder(BASE_URL);
 
-    public static Summoner withId(String id) {
+    @Override
+    protected String getBaseUrl() {
+        return BASE_URL;
+    }
+
+    @Override
+    protected EndpointBuilder getEndpointBuilder() {
+        return builder;
+    }
+
+/*    public static Summoner withId(String id) {
         String endpoint = builder.withParameter(id).build();
         String response = HttpRequest.sendRequest(endpoint, RiftWrapper.RIOT_API_KEY);
         SummonerDTO summonerDto = JsonUtility.deserialize(response, SummonerDTO.class);
@@ -35,5 +41,5 @@ public class SummonerAPI {
         String response = HttpRequest.sendRequest(endpoint, RiftWrapper.RIOT_API_KEY);
         SummonerDTO summonerDto = JsonUtility.deserialize(response, SummonerDTO.class);
         return summonerDto != null ? SummonerTransformer.transform(summonerDto) : new Summoner.Builder().build();
-    }
+    }*/
 }

@@ -23,14 +23,18 @@ public class EndpointBuilder {
         return this;
     }
 
+    public EndpointBuilder withParameter(List<String> parameterList) {
+        parameters.addAll(parameterList);
+        return this;
+    }
+
     public String build() {
         StringBuilder builder = new StringBuilder();
         builder.append("https://");
         builder.append(RiftWrapper.getRegion().getRoutingValue()).append("/");
         builder.append(baseUrl).append("/");
-        parameters.forEach(parameter -> builder.append(parameter).append("/"));
+        builder.append(String.join("/", parameters));
         parameters.clear();
-        System.out.println(builder.toString());
         return builder.toString();
     }
 

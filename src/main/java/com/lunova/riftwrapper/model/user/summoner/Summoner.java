@@ -1,6 +1,8 @@
 package com.lunova.riftwrapper.model.user.summoner;
 
-public class Summoner {
+import com.lunova.riftwrapper.model.user.UserObject;
+
+public class Summoner extends UserObject {
     private final String id;
     private final String accountId;
     private final String puuid;
