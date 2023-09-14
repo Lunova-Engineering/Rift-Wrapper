@@ -10,7 +10,10 @@ import com.lunova.riftwrapper.model.api.strategy.dto.SingleDataStrategy;
 import com.lunova.riftwrapper.model.api.strategy.dto.SummonerStrategy;
 import com.lunova.riftwrapper.model.api.strategy.endpoint.BaseEndpointStrategy;
 import com.lunova.riftwrapper.model.api.strategy.endpoint.EndpointStrategy;
+import com.lunova.riftwrapper.model.data.Division;
+import com.lunova.riftwrapper.model.data.Queue;
 import com.lunova.riftwrapper.model.data.Region;
+import com.lunova.riftwrapper.model.data.Tier;
 import com.lunova.riftwrapper.model.dto.DataTransferObject;
 import com.lunova.riftwrapper.model.user.UserObject;
 import com.lunova.riftwrapper.model.user.league.LeagueEntry;
@@ -77,6 +80,10 @@ public class RiftWrapper {
     }
     public static LinkedHashSet<LeagueEntry> getLeagueEntryById(String id) {
         return (LinkedHashSet<LeagueEntry>) getUserCollectionObject(LeagueAPI.class, new BaseEndpointStrategy("entries/by-summoner", id), LeagueEntryStrategy.class);
+    }
+
+    public static LinkedHashSet<LeagueEntry> getLeagueEntryList(Queue queue, Tier tier, Division division) {
+        return (LinkedHashSet<LeagueEntry>) getUserCollectionObject(LeagueAPI.class, new BaseEndpointStrategy("entries", queue.name(), tier.name(), division.name(), "?page=" + 1), LeagueEntryStrategy.class);
     }
 
     private static <DTO extends DataTransferObject, USER extends UserObject> USER getUserObject(

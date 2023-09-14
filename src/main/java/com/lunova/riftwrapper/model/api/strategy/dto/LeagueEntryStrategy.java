@@ -21,7 +21,7 @@ public class LeagueEntryStrategy implements CollectionDataStrategy<LeagueEntryDT
 
     @Override
     public Collection<LeagueEntry> transform(Collection<LeagueEntryDTO> dataTransferObjectCollection) {
-        return dataTransferObjectCollection.stream().map(this::transform).collect(Collectors.toSet());
+        return dataTransferObjectCollection.stream().map(this::transform).collect(Collectors.toCollection(LinkedHashSet::new));
     }
 
     @Override

@@ -33,7 +33,12 @@ public class EndpointBuilder {
         builder.append("https://");
         builder.append(RiftWrapper.getRegion().getRoutingValue()).append("/");
         builder.append(baseUrl).append("/");
-        builder.append(String.join("/", parameters));
+        String joinedParams = String.join("/", parameters);
+
+        if (parameters.size() > 0 && parameters.get(parameters.size() - 1).startsWith("?"))
+            joinedParams = joinedParams.replace("/?", "?");
+
+        builder.append(joinedParams);
         parameters.clear();
         return builder.toString();
     }
