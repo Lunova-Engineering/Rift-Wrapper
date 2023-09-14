@@ -2,17 +2,23 @@ package com.lunova.riftwrapper;
 
 
 import com.lunova.riftwrapper.model.api.RiotAPI;
+import com.lunova.riftwrapper.model.api.impl.LeagueAPI;
 import com.lunova.riftwrapper.model.api.impl.SummonerAPI;
-import com.lunova.riftwrapper.model.api.strategy.dto.DataStrategy;
+import com.lunova.riftwrapper.model.api.strategy.dto.CollectionDataStrategy;
+import com.lunova.riftwrapper.model.api.strategy.dto.LeagueEntryStrategy;
+import com.lunova.riftwrapper.model.api.strategy.dto.SingleDataStrategy;
 import com.lunova.riftwrapper.model.api.strategy.dto.SummonerStrategy;
 import com.lunova.riftwrapper.model.api.strategy.endpoint.BaseEndpointStrategy;
 import com.lunova.riftwrapper.model.api.strategy.endpoint.EndpointStrategy;
 import com.lunova.riftwrapper.model.data.Region;
 import com.lunova.riftwrapper.model.dto.DataTransferObject;
 import com.lunova.riftwrapper.model.user.UserObject;
+import com.lunova.riftwrapper.model.user.league.LeagueEntry;
 import com.lunova.riftwrapper.model.user.summoner.Summoner;
 import com.lunova.riftwrapper.utilities.RiftWrapperCache;
 
+import java.util.Collection;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -69,18 +75,26 @@ public class RiftWrapper {
                 .map(name -> getUserObject(SummonerAPI.class, new BaseEndpointStrategy(name), SummonerStrategy.class))
                 .collect(Collectors.toList());
     }
-/*    public static LeagueEntry getLeagueEntryById(String id) {
-        return getUserObject(LeagueAPI.class, new BaseEndpointStrategy("entries/by-summoner", id), LeagueEntryStrategy.class);
-    }*/
+    public static LinkedHashSet<LeagueEntry> getLeagueEntryById(String id) {
+        return (LinkedHashSet<LeagueEntry>) getUserCollectionObject(LeagueAPI.class, new BaseEndpointStrategy("entries/by-summoner", id), LeagueEntryStrategy.class);
+    }
 
     private static <DTO extends DataTransferObject, USER extends UserObject> USER getUserObject(
             Class<? extends RiotAPI> api,
             EndpointStrategy endpointStrategy,
-            Class<? extends DataStrategy<DTO, USER>> dataStrategyClass) {
+            Class<? extends SingleDataStrategy<DTO, USER>> dataStrategyClass) {
 
-        DataStrategy<DTO, USER> dataStrategyInstance = RiftWrapperCache.getDataStrategy(dataStrategyClass);
-        return RiftWrapperCache.getAPI(api).fetchData(endpointStrategy, dataStrategyInstance);
+        SingleDataStrategy<DTO, USER> singleDataStrategyInstance = RiftWrapperCache.getDataStrategy(dataStrategyClass);
+        return RiftWrapperCache.getAPI(api).fetchSingleData(endpointStrategy, singleDataStrategyInstance);
     }
 
+    private static <DTO extends DataTransferObject, USER extends UserObject> Collection<USER> getUserCollectionObject(
+            Class<? extends RiotAPI> api,
+            EndpointStrategy endpointStrategy,
+            Class<? extends CollectionDataStrategy<DTO, USER>> dataStrategyClass) {
+
+        CollectionDataStrategy<DTO, USER> collectionDataStrategy = RiftWrapperCache.getDataStrategy(dataStrategyClass);
+        return RiftWrapperCache.getAPI(api).fetchCollectionData(endpointStrategy, collectionDataStrategy);
+    }
 
 }

@@ -4,7 +4,7 @@ import com.lunova.riftwrapper.model.dto.summoner.SummonerDTO;
 import com.lunova.riftwrapper.model.transformers.SummonerTransformer;
 import com.lunova.riftwrapper.model.user.summoner.Summoner;
 
-public class SummonerStrategy implements DataStrategy<SummonerDTO, Summoner> {
+public class SummonerStrategy implements SingleDataStrategy<SummonerDTO, Summoner> {
     @Override
     public Class<SummonerDTO> getDTOClass() {
         return SummonerDTO.class;

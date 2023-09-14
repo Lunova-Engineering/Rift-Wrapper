@@ -14,7 +14,6 @@ public class HttpRequest {
     public static String sendRequest(String url, String key) {
 
         try {
-            System.out.println(url);
             OkHttpClient client = new OkHttpClient();
             Request.Builder requestBuilder = new Request.Builder().url(url).addHeader("X-Riot-Token", key);
 
