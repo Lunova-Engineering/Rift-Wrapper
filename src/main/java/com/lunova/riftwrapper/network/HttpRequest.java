@@ -12,6 +12,7 @@ import java.io.IOException;
 public class HttpRequest {
 
     public static String sendRequest(String url, String key) {
+        System.out.println(url);
         try {
             OkHttpClient client = new OkHttpClient();
             Request.Builder requestBuilder = new Request.Builder().url(url).addHeader("X-Riot-Token", key);

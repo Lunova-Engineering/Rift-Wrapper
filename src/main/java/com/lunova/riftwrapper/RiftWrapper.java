@@ -3,12 +3,14 @@ package com.lunova.riftwrapper;
 
 import com.lunova.riftwrapper.model.api.RiotAPI;
 import com.lunova.riftwrapper.model.api.impl.LeagueAPI;
+import com.lunova.riftwrapper.model.api.impl.MatchAPI;
 import com.lunova.riftwrapper.model.api.impl.SummonerAPI;
 import com.lunova.riftwrapper.model.api.strategy.CollectionDataStrategy;
 import com.lunova.riftwrapper.model.api.strategy.EndpointStrategy;
 import com.lunova.riftwrapper.model.api.strategy.SingleDataStrategy;
 import com.lunova.riftwrapper.model.api.strategy.dto.LeagueEntryStrategy;
 import com.lunova.riftwrapper.model.api.strategy.dto.LeagueListStrategy;
+import com.lunova.riftwrapper.model.api.strategy.dto.MatchStrategy;
 import com.lunova.riftwrapper.model.api.strategy.dto.SummonerStrategy;
 import com.lunova.riftwrapper.model.api.strategy.endpoint.BaseEndpointStrategy;
 import com.lunova.riftwrapper.model.data.Division;
@@ -19,6 +21,7 @@ import com.lunova.riftwrapper.model.dto.DataTransferObject;
 import com.lunova.riftwrapper.model.user.UserObject;
 import com.lunova.riftwrapper.model.user.league.LeagueEntry;
 import com.lunova.riftwrapper.model.user.league.LeagueList;
+import com.lunova.riftwrapper.model.user.match.Match;
 import com.lunova.riftwrapper.model.user.summoner.Summoner;
 import com.lunova.riftwrapper.utilities.RiftWrapperCache;
 
@@ -108,6 +111,10 @@ public class RiftWrapper {
 
     public static LeagueList getLeagueByLeagueId(String leagueId) {
         return getUserObject(LeagueAPI.class, new BaseEndpointStrategy("leagues", leagueId), LeagueListStrategy.class);
+    }
+
+    public static Match getMatches(String matchId) {
+        return getUserObject(MatchAPI.class, new BaseEndpointStrategy(matchId), MatchStrategy.class);
     }
 
     private static <DTO extends DataTransferObject, USER extends UserObject> USER getUserObject(

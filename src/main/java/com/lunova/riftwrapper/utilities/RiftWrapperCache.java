@@ -3,10 +3,12 @@ package com.lunova.riftwrapper.utilities;
 import com.google.common.collect.ImmutableMap;
 import com.lunova.riftwrapper.model.api.RiotAPI;
 import com.lunova.riftwrapper.model.api.impl.LeagueAPI;
+import com.lunova.riftwrapper.model.api.impl.MatchAPI;
 import com.lunova.riftwrapper.model.api.impl.SummonerAPI;
 import com.lunova.riftwrapper.model.api.strategy.SingleDataStrategy;
 import com.lunova.riftwrapper.model.api.strategy.dto.LeagueEntryStrategy;
 import com.lunova.riftwrapper.model.api.strategy.dto.LeagueListStrategy;
+import com.lunova.riftwrapper.model.api.strategy.dto.MatchStrategy;
 import com.lunova.riftwrapper.model.api.strategy.dto.SummonerStrategy;
 import com.lunova.riftwrapper.model.api.strategy.endpoint.BaseEndpointStrategy;
 import com.lunova.riftwrapper.model.api.strategy.EndpointStrategy;
@@ -27,12 +29,14 @@ public class RiftWrapperCache {
         dataBuilder.put(SummonerStrategy.class, new SummonerStrategy());
         dataBuilder.put(LeagueEntryStrategy.class, new LeagueEntryStrategy());
         dataBuilder.put(LeagueListStrategy.class, new LeagueListStrategy());
+        dataBuilder.put(MatchStrategy.class, new MatchStrategy());
 
         DATA_STRATEGIES = dataBuilder.build();
 
         ImmutableMap.Builder<Class<? extends RiotAPI>, RiotAPI> apiBuilder = ImmutableMap.builder();
         apiBuilder.put(SummonerAPI.class, new SummonerAPI());
         apiBuilder.put(LeagueAPI.class, new LeagueAPI());
+        apiBuilder.put(MatchAPI.class, new MatchAPI());
 
         API_CACHE = apiBuilder.build();
     }
