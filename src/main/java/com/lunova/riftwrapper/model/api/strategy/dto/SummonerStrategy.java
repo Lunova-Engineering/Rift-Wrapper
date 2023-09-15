@@ -1,5 +1,6 @@
 package com.lunova.riftwrapper.model.api.strategy.dto;
 
+import com.lunova.riftwrapper.model.api.strategy.SingleDataStrategy;
 import com.lunova.riftwrapper.model.dto.summoner.SummonerDTO;
 import com.lunova.riftwrapper.model.transformers.SummonerTransformer;
 import com.lunova.riftwrapper.model.user.summoner.Summoner;

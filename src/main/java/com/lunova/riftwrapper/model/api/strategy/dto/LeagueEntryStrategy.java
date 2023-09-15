@@ -1,6 +1,7 @@
 package com.lunova.riftwrapper.model.api.strategy.dto;
 
 import com.google.gson.reflect.TypeToken;
+import com.lunova.riftwrapper.model.api.strategy.CollectionDataStrategy;
 import com.lunova.riftwrapper.model.dto.league.LeagueEntryDTO;
 import com.lunova.riftwrapper.model.transformers.LeagueTransformer;
 import com.lunova.riftwrapper.model.user.league.LeagueEntry;

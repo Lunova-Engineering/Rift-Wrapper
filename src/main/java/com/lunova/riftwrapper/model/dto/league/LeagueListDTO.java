@@ -1,8 +1,10 @@
 package com.lunova.riftwrapper.model.dto.league;
 
+import com.lunova.riftwrapper.model.dto.DataTransferObject;
+
 import java.util.List;
 
-public class LeagueListDTO {
+public class LeagueListDTO extends DataTransferObject {
     private String leagueId;
     private List<LeagueItemDTO> entries;
     private String tier;
@@ -15,6 +17,10 @@ public class LeagueListDTO {
         this.tier = tier;
         this.name = name;
         this.queue = queue;
+    }
+
+    public LeagueListDTO() {
+
     }
 
     public String getLeagueId() {

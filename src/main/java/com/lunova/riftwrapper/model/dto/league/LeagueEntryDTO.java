@@ -25,6 +25,10 @@ public class LeagueEntryDTO extends DataTransferObject {
         this.miniSeries = miniSeries;
     }
 
+    public LeagueEntryDTO() {
+
+    }
+
     public String getLeagueId() {
         return leagueId;
     }

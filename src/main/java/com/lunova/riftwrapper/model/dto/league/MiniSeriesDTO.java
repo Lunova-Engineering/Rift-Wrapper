@@ -13,6 +13,10 @@ public class MiniSeriesDTO {
         this.wins = wins;
     }
 
+    public MiniSeriesDTO() {
+
+    }
+
     public int getLosses() {
         return losses;
     }

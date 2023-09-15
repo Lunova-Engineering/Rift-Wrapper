@@ -1,4 +1,4 @@
-package com.lunova.riftwrapper.model.api.strategy.dto;
+package com.lunova.riftwrapper.model.api.strategy;
 
 import com.lunova.riftwrapper.model.dto.DataTransferObject;
 import com.lunova.riftwrapper.model.user.UserObject;

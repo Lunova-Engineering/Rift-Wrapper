@@ -27,6 +27,10 @@ public class LeagueItemDTO {
         this.summonerId = summonerId;
     }
 
+    public LeagueItemDTO() {
+
+    }
+
     public boolean isFreshBlood() {
         return freshBlood;
     }

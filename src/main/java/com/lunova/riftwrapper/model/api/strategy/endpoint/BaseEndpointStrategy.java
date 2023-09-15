@@ -1,6 +1,7 @@
 package com.lunova.riftwrapper.model.api.strategy.endpoint;
 
 import com.lunova.riftwrapper.model.api.EndpointBuilder;
+import com.lunova.riftwrapper.model.api.strategy.EndpointStrategy;
 
 import java.util.Arrays;
 import java.util.List;

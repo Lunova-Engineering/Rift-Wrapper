@@ -1,13 +1,12 @@
 package com.lunova.riftwrapper.model.user.league;
 
-import com.lunova.riftwrapper.model.dto.league.MiniSeriesDTO;
 import com.lunova.riftwrapper.model.user.UserObject;
 
 public class LeagueEntry extends UserObject {
     private String leagueId, summonerId, summonerName, queueType, tier, rank;
     private int leaguePoints, wins, losses;
     private boolean hotStreak, veteran, freshBlood, inactive;
-    private MiniSeriesDTO miniSeries;
+    private MiniSeries miniSeries;
 
     private LeagueEntry(Builder builder) {
         this.leagueId = builder.leagueId;
@@ -23,7 +22,7 @@ public class LeagueEntry extends UserObject {
         this.veteran = builder.veteran;
         this.freshBlood = builder.freshBlood;
         this.inactive = builder.inactive;
-        this.miniSeries = builder.miniSeries; //TODO CHANGE TO USER OBJECT
+        this.miniSeries = builder.miniSeries;
     }
 
     public String getLeagueId() {
@@ -78,7 +77,7 @@ public class LeagueEntry extends UserObject {
         return inactive;
     }
 
-    public MiniSeriesDTO getMiniSeries() {
+    public MiniSeries getMiniSeries() {
         return miniSeries;
     }
 
@@ -86,7 +85,7 @@ public class LeagueEntry extends UserObject {
         private String leagueId, summonerId, summonerName, queueType, tier, rank;
         private int leaguePoints, wins, losses;
         private boolean hotStreak, veteran, freshBlood, inactive;
-        private MiniSeriesDTO miniSeries;
+        private MiniSeries miniSeries;
 
         public Builder setLeagueId(String leagueId) {
             this.leagueId = leagueId;
@@ -153,7 +152,7 @@ public class LeagueEntry extends UserObject {
             return this;
         }
 
-        public Builder setMiniSeries(MiniSeriesDTO miniSeries) {
+        public Builder setMiniSeries(MiniSeries miniSeries) {
             this.miniSeries = miniSeries;
             return this;
         }

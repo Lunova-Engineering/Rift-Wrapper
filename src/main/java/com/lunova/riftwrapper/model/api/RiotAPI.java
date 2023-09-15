@@ -1,9 +1,9 @@
 package com.lunova.riftwrapper.model.api;
 
 import com.lunova.riftwrapper.RiftWrapper;
-import com.lunova.riftwrapper.model.api.strategy.dto.CollectionDataStrategy;
-import com.lunova.riftwrapper.model.api.strategy.dto.SingleDataStrategy;
-import com.lunova.riftwrapper.model.api.strategy.endpoint.EndpointStrategy;
+import com.lunova.riftwrapper.model.api.strategy.CollectionDataStrategy;
+import com.lunova.riftwrapper.model.api.strategy.SingleDataStrategy;
+import com.lunova.riftwrapper.model.api.strategy.EndpointStrategy;
 import com.lunova.riftwrapper.model.dto.DataTransferObject;
 import com.lunova.riftwrapper.model.user.UserObject;
 import com.lunova.riftwrapper.network.HttpRequest;

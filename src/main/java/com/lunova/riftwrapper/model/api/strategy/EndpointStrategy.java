@@ -1,4 +1,4 @@
-package com.lunova.riftwrapper.model.api.strategy.endpoint;
+package com.lunova.riftwrapper.model.api.strategy;
 
 import com.lunova.riftwrapper.model.api.EndpointBuilder;
 

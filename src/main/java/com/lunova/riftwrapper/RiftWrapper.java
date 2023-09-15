@@ -4,19 +4,21 @@ package com.lunova.riftwrapper;
 import com.lunova.riftwrapper.model.api.RiotAPI;
 import com.lunova.riftwrapper.model.api.impl.LeagueAPI;
 import com.lunova.riftwrapper.model.api.impl.SummonerAPI;
-import com.lunova.riftwrapper.model.api.strategy.dto.CollectionDataStrategy;
+import com.lunova.riftwrapper.model.api.strategy.CollectionDataStrategy;
+import com.lunova.riftwrapper.model.api.strategy.EndpointStrategy;
+import com.lunova.riftwrapper.model.api.strategy.SingleDataStrategy;
 import com.lunova.riftwrapper.model.api.strategy.dto.LeagueEntryStrategy;
-import com.lunova.riftwrapper.model.api.strategy.dto.SingleDataStrategy;
+import com.lunova.riftwrapper.model.api.strategy.dto.LeagueListStrategy;
 import com.lunova.riftwrapper.model.api.strategy.dto.SummonerStrategy;
 import com.lunova.riftwrapper.model.api.strategy.endpoint.BaseEndpointStrategy;
-import com.lunova.riftwrapper.model.api.strategy.endpoint.EndpointStrategy;
 import com.lunova.riftwrapper.model.data.Division;
-import com.lunova.riftwrapper.model.data.Queue;
+import com.lunova.riftwrapper.model.data.QueueType;
 import com.lunova.riftwrapper.model.data.Region;
 import com.lunova.riftwrapper.model.data.Tier;
 import com.lunova.riftwrapper.model.dto.DataTransferObject;
 import com.lunova.riftwrapper.model.user.UserObject;
 import com.lunova.riftwrapper.model.user.league.LeagueEntry;
+import com.lunova.riftwrapper.model.user.league.LeagueList;
 import com.lunova.riftwrapper.model.user.summoner.Summoner;
 import com.lunova.riftwrapper.utilities.RiftWrapperCache;
 
@@ -82,8 +84,30 @@ public class RiftWrapper {
         return (LinkedHashSet<LeagueEntry>) getUserCollectionObject(LeagueAPI.class, new BaseEndpointStrategy("entries/by-summoner", id), LeagueEntryStrategy.class);
     }
 
-    public static LinkedHashSet<LeagueEntry> getLeagueEntryList(Queue queue, Tier tier, Division division) {
-        return (LinkedHashSet<LeagueEntry>) getUserCollectionObject(LeagueAPI.class, new BaseEndpointStrategy("entries", queue.name(), tier.name(), division.name(), "?page=" + 1), LeagueEntryStrategy.class);
+    public static LinkedHashSet<LeagueEntry> getLeagueEntryList(QueueType queueType, Tier tier, Division division) {
+        return (LinkedHashSet<LeagueEntry>) getUserCollectionObject(LeagueAPI.class, new BaseEndpointStrategy("entries", queueType.name(), tier.name(), division.name(), "?page=" + 1), LeagueEntryStrategy.class);
+    }
+
+    public static LinkedHashSet<LeagueEntry> getLeagueEntryList(QueueType queueType, Tier tier, Division division, int page) {
+        if(page <= 0)
+            page = 0;
+        return (LinkedHashSet<LeagueEntry>) getUserCollectionObject(LeagueAPI.class, new BaseEndpointStrategy("entries", queueType.name(), tier.name(), division.name(), "?page=" + page), LeagueEntryStrategy.class);
+    }
+
+    public static LeagueList getChallengerLeagueByQueue(QueueType queueType) {
+        return getUserObject(LeagueAPI.class, new BaseEndpointStrategy("challengerleagues/by-queue", queueType.name()), LeagueListStrategy.class);
+    }
+
+    public static LeagueList getGrandMasterLeagueByQueue(QueueType queueType) {
+        return getUserObject(LeagueAPI.class, new BaseEndpointStrategy("grandmaster/by-queue", queueType.name()), LeagueListStrategy.class);
+    }
+
+    public static LeagueList getMasterLeagueByQueue(QueueType queueType) {
+        return getUserObject(LeagueAPI.class, new BaseEndpointStrategy("masterleagues/by-queue", queueType.name()), LeagueListStrategy.class);
+    }
+
+    public static LeagueList getLeagueByLeagueId(String leagueId) {
+        return getUserObject(LeagueAPI.class, new BaseEndpointStrategy("leagues", leagueId), LeagueListStrategy.class);
     }
 
     private static <DTO extends DataTransferObject, USER extends UserObject> USER getUserObject(

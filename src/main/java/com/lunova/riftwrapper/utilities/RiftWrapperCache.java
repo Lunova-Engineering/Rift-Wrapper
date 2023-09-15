@@ -4,11 +4,12 @@ import com.google.common.collect.ImmutableMap;
 import com.lunova.riftwrapper.model.api.RiotAPI;
 import com.lunova.riftwrapper.model.api.impl.LeagueAPI;
 import com.lunova.riftwrapper.model.api.impl.SummonerAPI;
-import com.lunova.riftwrapper.model.api.strategy.dto.SingleDataStrategy;
+import com.lunova.riftwrapper.model.api.strategy.SingleDataStrategy;
 import com.lunova.riftwrapper.model.api.strategy.dto.LeagueEntryStrategy;
+import com.lunova.riftwrapper.model.api.strategy.dto.LeagueListStrategy;
 import com.lunova.riftwrapper.model.api.strategy.dto.SummonerStrategy;
 import com.lunova.riftwrapper.model.api.strategy.endpoint.BaseEndpointStrategy;
-import com.lunova.riftwrapper.model.api.strategy.endpoint.EndpointStrategy;
+import com.lunova.riftwrapper.model.api.strategy.EndpointStrategy;
 
 public class RiftWrapperCache {
 
@@ -25,6 +26,7 @@ public class RiftWrapperCache {
         ImmutableMap.Builder<Class<? extends SingleDataStrategy<?, ?>>, SingleDataStrategy<?, ?>> dataBuilder = ImmutableMap.builder();
         dataBuilder.put(SummonerStrategy.class, new SummonerStrategy());
         dataBuilder.put(LeagueEntryStrategy.class, new LeagueEntryStrategy());
+        dataBuilder.put(LeagueListStrategy.class, new LeagueListStrategy());
 
         DATA_STRATEGIES = dataBuilder.build();
 

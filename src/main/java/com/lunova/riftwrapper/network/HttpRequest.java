@@ -12,7 +12,6 @@ import java.io.IOException;
 public class HttpRequest {
 
     public static String sendRequest(String url, String key) {
-
         try {
             OkHttpClient client = new OkHttpClient();
             Request.Builder requestBuilder = new Request.Builder().url(url).addHeader("X-Riot-Token", key);
@@ -26,6 +25,7 @@ public class HttpRequest {
                     response.body().close();
                 throw new IOException("Received response code " + response.code() + " - " + response.message());
             }
+
 
             try (ResponseBody responseBody = response.body()) {
                 if (responseBody == null) {
