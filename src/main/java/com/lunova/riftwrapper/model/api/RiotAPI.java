@@ -2,6 +2,7 @@ package com.lunova.riftwrapper.model.api;
 
 import com.lunova.riftwrapper.RiftWrapper;
 import com.lunova.riftwrapper.model.api.strategy.CollectionDataStrategy;
+import com.lunova.riftwrapper.model.api.strategy.SimpleCollectionDataStrategy;
 import com.lunova.riftwrapper.model.api.strategy.SingleDataStrategy;
 import com.lunova.riftwrapper.model.api.strategy.EndpointStrategy;
 import com.lunova.riftwrapper.model.dto.DataTransferObject;
@@ -30,5 +31,11 @@ public abstract class RiotAPI {
         String response = HttpRequest.sendRequest(endpoint, RiftWrapper.RIOT_API_KEY);
         Collection<DTO> dtoCollection = JsonUtility.deserialize(response, dataStrategy.getDTOCollectionType());
         return dtoCollection != null ? dataStrategy.transform(dtoCollection) : dataStrategy.getDefaultCollectionInstance();
+    }
+
+    public <T, C extends Collection<T>> C fetchSimpleCollectionData(EndpointStrategy endpointStrategy, SimpleCollectionDataStrategy<C> simpleCollectionDataStrategy) {
+        String endpoint = endpointStrategy.buildEndpoint(getEndpointBuilder());
+        String response = HttpRequest.sendRequest(endpoint, RiftWrapper.RIOT_API_KEY);
+        return JsonUtility.deserialize(response, simpleCollectionDataStrategy.getDeserializeType());
     }
 }

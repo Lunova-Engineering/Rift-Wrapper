@@ -8,7 +8,7 @@ public enum Region {
     KOREA("kr.api.riotgames.com", "KR", "ko_KR"),
     LATIN_AMERICA_NORTH("la1.api.riotgames.com", "LAN", "es_MX"),
     LATIN_AMERICA_SOUTH("la2.api.riotgames.com", "LAS", "es_AR"),
-    NORTH_AMERICA("americas.api.riotgames.com", "NA", "en_US"),
+    NORTH_AMERICA("na1.api.riotgames.com", "NA", "en_US"),
     OCEANIA("oc1.api.riotgames.com", "OCE", "en_AU"),
     TURKEY("tr1.api.riotgames.com", "TR", "tr_TR"),
     RUSSIA("ru.api.riotgames.com", "RU", "ru_RU"),

@@ -7,11 +7,9 @@ import com.lunova.riftwrapper.model.api.impl.MatchAPI;
 import com.lunova.riftwrapper.model.api.impl.SummonerAPI;
 import com.lunova.riftwrapper.model.api.strategy.CollectionDataStrategy;
 import com.lunova.riftwrapper.model.api.strategy.EndpointStrategy;
+import com.lunova.riftwrapper.model.api.strategy.SimpleCollectionDataStrategy;
 import com.lunova.riftwrapper.model.api.strategy.SingleDataStrategy;
-import com.lunova.riftwrapper.model.api.strategy.dto.LeagueEntryStrategy;
-import com.lunova.riftwrapper.model.api.strategy.dto.LeagueListStrategy;
-import com.lunova.riftwrapper.model.api.strategy.dto.MatchStrategy;
-import com.lunova.riftwrapper.model.api.strategy.dto.SummonerStrategy;
+import com.lunova.riftwrapper.model.api.strategy.dto.*;
 import com.lunova.riftwrapper.model.api.strategy.endpoint.BaseEndpointStrategy;
 import com.lunova.riftwrapper.model.data.Division;
 import com.lunova.riftwrapper.model.data.QueueType;
@@ -23,7 +21,6 @@ import com.lunova.riftwrapper.model.user.league.LeagueEntry;
 import com.lunova.riftwrapper.model.user.league.LeagueList;
 import com.lunova.riftwrapper.model.user.match.Match;
 import com.lunova.riftwrapper.model.user.summoner.Summoner;
-import com.lunova.riftwrapper.utilities.RiftWrapperCache;
 
 import java.util.Collection;
 import java.util.LinkedHashSet;
@@ -52,87 +49,87 @@ public class RiftWrapper {
 
 
     public static Summoner summonerWithId(String id) {
-        return getUserObject(SummonerAPI.class, new BaseEndpointStrategy(id), SummonerStrategy.class);
+        return getUserObject(SummonerAPI.getInstance(), new BaseEndpointStrategy(id), SummonerStrategy.getInstance());
     }
     public static Summoner summonerWithAccountId(String accountId) {
-        return getUserObject(SummonerAPI.class, new BaseEndpointStrategy("by-account", accountId), SummonerStrategy.class);
+        return getUserObject(SummonerAPI.getInstance(), new BaseEndpointStrategy("by-account", accountId), SummonerStrategy.getInstance());
     }
     public static Summoner summonerWithPuuid(String puuid) {
-        return getUserObject(SummonerAPI.class, new BaseEndpointStrategy("by-puuid", puuid), SummonerStrategy.class);
+        return getUserObject(SummonerAPI.getInstance(), new BaseEndpointStrategy("by-puuid", puuid), SummonerStrategy.getInstance());
     }
     public static Summoner getSummonerWithName(String name) {
-        return getUserObject(SummonerAPI.class, new BaseEndpointStrategy("by-name", name), SummonerStrategy.class);
+        return getUserObject(SummonerAPI.getInstance(), new BaseEndpointStrategy("by-name", name), SummonerStrategy.getInstance());
     }
     public static List<Summoner> summonersWithId(String... summonerIds) {
        return Stream.of(summonerIds)
-               .map(id -> getUserObject(SummonerAPI.class, new BaseEndpointStrategy(id), SummonerStrategy.class))
+               .map(id -> getUserObject(SummonerAPI.getInstance(), new BaseEndpointStrategy(id), SummonerStrategy.getInstance()))
                .collect(Collectors.toList());
     }
     public static List<Summoner> summonersWithAccountId(String... summonerAccountIds) {
         return Stream.of(summonerAccountIds)
-                .map(accountId -> getUserObject(SummonerAPI.class, new BaseEndpointStrategy(accountId), SummonerStrategy.class))
+                .map(accountId -> getUserObject(SummonerAPI.getInstance(), new BaseEndpointStrategy(accountId), SummonerStrategy.getInstance()))
                 .collect(Collectors.toList());
     }
     public static List<Summoner> summonersWithPuuid(String... summonerPuuids) {
         return Stream.of(summonerPuuids)
-                .map(puuid -> getUserObject(SummonerAPI.class, new BaseEndpointStrategy(puuid), SummonerStrategy.class))
+                .map(puuid -> getUserObject(SummonerAPI.getInstance(), new BaseEndpointStrategy(puuid), SummonerStrategy.getInstance()))
                 .collect(Collectors.toList());
     }
     public static List<Summoner> summonersWithName(String... names) {
         return Stream.of(names)
-                .map(name -> getUserObject(SummonerAPI.class, new BaseEndpointStrategy(name), SummonerStrategy.class))
+                .map(name -> getUserObject(SummonerAPI.getInstance(), new BaseEndpointStrategy(name), SummonerStrategy.getInstance()))
                 .collect(Collectors.toList());
     }
     public static LinkedHashSet<LeagueEntry> getLeagueEntryById(String id) {
-        return (LinkedHashSet<LeagueEntry>) getUserCollectionObject(LeagueAPI.class, new BaseEndpointStrategy("entries/by-summoner", id), LeagueEntryStrategy.class);
+        return (LinkedHashSet<LeagueEntry>) getUserCollectionObject(LeagueAPI.getInstance(), new BaseEndpointStrategy("entries/by-summoner", id), LeagueEntryStrategy.getInstance());
     }
 
     public static LinkedHashSet<LeagueEntry> getLeagueEntryList(QueueType queueType, Tier tier, Division division) {
-        return (LinkedHashSet<LeagueEntry>) getUserCollectionObject(LeagueAPI.class, new BaseEndpointStrategy("entries", queueType.name(), tier.name(), division.name(), "?page=" + 1), LeagueEntryStrategy.class);
+        return (LinkedHashSet<LeagueEntry>) getUserCollectionObject(LeagueAPI.getInstance(), new BaseEndpointStrategy("entries", queueType.name(), tier.name(), division.name(), "?page=" + 1), LeagueEntryStrategy.getInstance());
     }
 
     public static LinkedHashSet<LeagueEntry> getLeagueEntryList(QueueType queueType, Tier tier, Division division, int page) {
         if(page <= 0)
             page = 0;
-        return (LinkedHashSet<LeagueEntry>) getUserCollectionObject(LeagueAPI.class, new BaseEndpointStrategy("entries", queueType.name(), tier.name(), division.name(), "?page=" + page), LeagueEntryStrategy.class);
+        return (LinkedHashSet<LeagueEntry>) getUserCollectionObject(LeagueAPI.getInstance(), new BaseEndpointStrategy("entries", queueType.name(), tier.name(), division.name(), "?page=" + page), LeagueEntryStrategy.getInstance());
     }
 
     public static LeagueList getChallengerLeagueByQueue(QueueType queueType) {
-        return getUserObject(LeagueAPI.class, new BaseEndpointStrategy("challengerleagues/by-queue", queueType.name()), LeagueListStrategy.class);
+        return getUserObject(LeagueAPI.getInstance(), new BaseEndpointStrategy("challengerleagues/by-queue", queueType.name()), LeagueListStrategy.getInstance());
     }
 
     public static LeagueList getGrandMasterLeagueByQueue(QueueType queueType) {
-        return getUserObject(LeagueAPI.class, new BaseEndpointStrategy("grandmaster/by-queue", queueType.name()), LeagueListStrategy.class);
+        return getUserObject(LeagueAPI.getInstance(), new BaseEndpointStrategy("grandmaster/by-queue", queueType.name()), LeagueListStrategy.getInstance());
     }
 
     public static LeagueList getMasterLeagueByQueue(QueueType queueType) {
-        return getUserObject(LeagueAPI.class, new BaseEndpointStrategy("masterleagues/by-queue", queueType.name()), LeagueListStrategy.class);
+        return getUserObject(LeagueAPI.getInstance(), new BaseEndpointStrategy("masterleagues/by-queue", queueType.name()), LeagueListStrategy.getInstance());
     }
 
     public static LeagueList getLeagueByLeagueId(String leagueId) {
-        return getUserObject(LeagueAPI.class, new BaseEndpointStrategy("leagues", leagueId), LeagueListStrategy.class);
+        return getUserObject(LeagueAPI.getInstance(), new BaseEndpointStrategy("leagues", leagueId), LeagueListStrategy.getInstance());
     }
 
     public static Match getMatches(String matchId) {
-        return getUserObject(MatchAPI.class, new BaseEndpointStrategy(matchId), MatchStrategy.class);
+        return getUserObject(MatchAPI.getInstance(), new BaseEndpointStrategy(matchId), MatchStrategy.getInstance());
     }
 
-    private static <DTO extends DataTransferObject, USER extends UserObject> USER getUserObject(
-            Class<? extends RiotAPI> api,
-            EndpointStrategy endpointStrategy,
-            Class<? extends SingleDataStrategy<DTO, USER>> dataStrategyClass) {
-
-        SingleDataStrategy<DTO, USER> singleDataStrategyInstance = RiftWrapperCache.getDataStrategy(dataStrategyClass);
-        return RiftWrapperCache.getAPI(api).fetchSingleData(endpointStrategy, singleDataStrategyInstance);
+    public static List<String> getMatchList(String puuid) {
+        return getSimpleCollectionObject(MatchAPI.getInstance(), new BaseEndpointStrategy("by-puuid", puuid, "ids?"), MatchListStrategy.getInstance());
     }
 
-    private static <DTO extends DataTransferObject, USER extends UserObject> Collection<USER> getUserCollectionObject(
-            Class<? extends RiotAPI> api,
-            EndpointStrategy endpointStrategy,
-            Class<? extends CollectionDataStrategy<DTO, USER>> dataStrategyClass) {
-
-        CollectionDataStrategy<DTO, USER> collectionDataStrategy = RiftWrapperCache.getDataStrategy(dataStrategyClass);
-        return RiftWrapperCache.getAPI(api).fetchCollectionData(endpointStrategy, collectionDataStrategy);
+    private static <DTO extends DataTransferObject, USER extends UserObject> USER getUserObject(RiotAPI api, EndpointStrategy endpointStrategy,
+                                                                                                SingleDataStrategy<DTO, USER> dataStrategy) {
+        return api.fetchSingleData(endpointStrategy, dataStrategy);
     }
 
+    private static <DTO extends DataTransferObject, USER extends UserObject> Collection<USER> getUserCollectionObject(RiotAPI api, EndpointStrategy endpointStrategy,
+                                                                                                                      CollectionDataStrategy<DTO, USER> dataStrategy) {
+        return api.fetchCollectionData(endpointStrategy, dataStrategy);
+    }
+
+    public static <T, C extends Collection<T>> C getSimpleCollectionObject(RiotAPI api, EndpointStrategy endpointStrategy,
+                                                              SimpleCollectionDataStrategy<C> dataStrategy) {
+        return api.fetchSimpleCollectionData(endpointStrategy, dataStrategy);
+    }
 }

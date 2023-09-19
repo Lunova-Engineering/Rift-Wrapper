@@ -6,6 +6,13 @@ import com.lunova.riftwrapper.model.transformers.SummonerTransformer;
 import com.lunova.riftwrapper.model.user.summoner.Summoner;
 
 public class SummonerStrategy implements SingleDataStrategy<SummonerDTO, Summoner> {
+
+    private static SummonerStrategy summonerStrategy;
+
+    public static SummonerStrategy getInstance() {
+        return summonerStrategy == null ? new SummonerStrategy() : summonerStrategy;
+    }
+
     @Override
     public Class<SummonerDTO> getDTOClass() {
         return SummonerDTO.class;

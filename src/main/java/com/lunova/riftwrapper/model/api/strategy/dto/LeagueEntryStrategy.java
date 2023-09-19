@@ -14,6 +14,11 @@ import java.util.stream.Collectors;
 
 public class LeagueEntryStrategy implements CollectionDataStrategy<LeagueEntryDTO, LeagueEntry> {
 
+    private static LeagueEntryStrategy leagueEntryStrategy;
+
+    public static LeagueEntryStrategy getInstance() {
+        return leagueEntryStrategy == null ? new LeagueEntryStrategy() : leagueEntryStrategy;
+    }
 
     @Override
     public Type getDTOCollectionType() {

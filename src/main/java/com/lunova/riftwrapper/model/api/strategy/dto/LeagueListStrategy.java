@@ -6,6 +6,13 @@ import com.lunova.riftwrapper.model.transformers.LeagueTransformer;
 import com.lunova.riftwrapper.model.user.league.LeagueList;
 
 public class LeagueListStrategy implements SingleDataStrategy<LeagueListDTO, LeagueList> {
+
+    private static LeagueListStrategy leagueListStrategy;
+
+    public static LeagueListStrategy getInstance() {
+        return leagueListStrategy == null ? new LeagueListStrategy() : leagueListStrategy;
+    }
+
     @Override
     public Class<LeagueListDTO> getDTOClass() {
         return LeagueListDTO.class;

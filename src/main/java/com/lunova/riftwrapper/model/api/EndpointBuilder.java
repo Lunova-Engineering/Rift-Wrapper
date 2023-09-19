@@ -1,17 +1,19 @@
 package com.lunova.riftwrapper.model.api;
 
-import com.lunova.riftwrapper.RiftWrapper;
-
 import java.util.ArrayList;
 import java.util.List;
 
 public class EndpointBuilder {
 
     private final String baseUrl;
+
+    private final String routingValue;
+
     private final List<String> parameters = new ArrayList<>();
 
-    public EndpointBuilder(String baseUrl) {
+    public EndpointBuilder(String baseUrl, String routingValue) {
         this.baseUrl = baseUrl;
+        this.routingValue = routingValue;
     }
 
     public EndpointBuilder withEndpoint(String endpoint) {
@@ -31,7 +33,7 @@ public class EndpointBuilder {
     public String build() {
         StringBuilder builder = new StringBuilder();
         builder.append("https://");
-        builder.append(RiftWrapper.getRegion().getRoutingValue()).append("/");
+        builder.append(routingValue).append("/");
         builder.append(baseUrl).append("/");
         String joinedParams = String.join("/", parameters);
 
