@@ -28,32 +28,6 @@ public class MatchEventDTO {
     private MatchPositionDTO position;
     private int beforeId;
 
-    public MatchEventDTO(String eventType, String towerType, int teamId, String ascendedType, int killerId, String levelUpType, String pointCaptured, List<Integer> assistingParticipantIds, String wardType, String monsterType, String type, int skillSlot, int victimId, long timestamp, int afterId, String monsterSubType, String laneType, int itemId, int participantId, String buildingType, int creatorId, MatchPositionDTO position, int beforeId) {
-        this.eventType = eventType;
-        this.towerType = towerType;
-        this.teamId = teamId;
-        this.ascendedType = ascendedType;
-        this.killerId = killerId;
-        this.levelUpType = levelUpType;
-        this.pointCaptured = pointCaptured;
-        this.assistingParticipantIds = assistingParticipantIds;
-        this.wardType = wardType;
-        this.monsterType = monsterType;
-        this.type = type;
-        this.skillSlot = skillSlot;
-        this.victimId = victimId;
-        this.timestamp = timestamp;
-        this.afterId = afterId;
-        this.monsterSubType = monsterSubType;
-        this.laneType = laneType;
-        this.itemId = itemId;
-        this.participantId = participantId;
-        this.buildingType = buildingType;
-        this.creatorId = creatorId;
-        this.position = position;
-        this.beforeId = beforeId;
-    }
-
     public String getEventType() {
         return eventType;
     }

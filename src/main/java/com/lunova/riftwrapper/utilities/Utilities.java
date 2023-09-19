@@ -14,10 +14,9 @@ public class Utilities {
         return LOGGER;
     }
 
-    public static String printValues(Object obj) {
-        if (obj == null) {
-            return "null";
-        }
+    public static void printValues(Object obj) {
+        if (obj == null)
+            return;
 
         Class<?> clazz = obj.getClass();
         StringBuilder sb = new StringBuilder();
@@ -36,6 +35,6 @@ public class Utilities {
                 sb.append(field.getName()).append(": access error\n");
             }
         }
-        return sb.toString();
+        System.out.println(sb.toString());
     }
 }

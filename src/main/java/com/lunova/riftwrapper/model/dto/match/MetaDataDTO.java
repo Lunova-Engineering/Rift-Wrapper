@@ -10,16 +10,6 @@ public class MetaDataDTO extends DataTransferObject {
     private String matchId;
     private List<String> participants = new ArrayList<>(10);
 
-    public MetaDataDTO(String dataVersion, String matchId, List<String> participants) {
-        this.dataVersion = dataVersion;
-        this.matchId = matchId;
-        this.participants.addAll(participants);
-    }
-
-    public MetaDataDTO() {
-
-    }
-
     public String getDataVersion() {
         return dataVersion;
     }

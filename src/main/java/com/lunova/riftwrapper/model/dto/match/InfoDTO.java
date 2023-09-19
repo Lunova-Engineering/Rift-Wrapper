@@ -19,25 +19,8 @@ public class InfoDTO extends DataTransferObject {
     private List<TeamDTO> teams = new ArrayList<>(2);
     private String tournamentCode;
 
-    public InfoDTO(long gameCreation, long gameDuration, long gameEndTimestamp, long gameId, String gameMode, String gameName, long gameStartTimestamp, String gameType, String gameVersion, int mapId, String platformId, int queueId, List<TeamDTO> teams, String tournamentCode) {
-        this.gameCreation = gameCreation;
-        this.gameDuration = gameDuration;
-        this.gameEndTimestamp = gameEndTimestamp;
-        this.gameId = gameId;
-        this.gameMode = gameMode;
-        this.gameName = gameName;
-        this.gameStartTimestamp = gameStartTimestamp;
-        this.gameType = gameType;
-        this.gameVersion = gameVersion;
-        this.mapId = mapId;
-        this.platformId = platformId;
-        this.queueId = queueId;
-        this.teams.addAll(teams);
-        this.tournamentCode = tournamentCode;
-    }
-
-    public InfoDTO() {
-
+    public void setParticipants(List<ParticipantDTO> participants) {
+        this.participants = participants;
     }
 
     public long getGameCreation() {
@@ -122,11 +105,6 @@ public class InfoDTO extends DataTransferObject {
 
     public List<ParticipantDTO> getParticipants() {
         return participants;
-    }
-
-    public InfoDTO setParticipants(List<ParticipantDTO> participants) {
-        this.participants = participants;
-        return this;
     }
 
     public String getPlatformId() {

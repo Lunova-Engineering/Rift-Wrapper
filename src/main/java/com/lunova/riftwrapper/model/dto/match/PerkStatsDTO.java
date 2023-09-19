@@ -5,16 +5,6 @@ import com.lunova.riftwrapper.model.dto.DataTransferObject;
 public class PerkStatsDTO extends DataTransferObject {
     private int defense, flex, offense;
 
-    public PerkStatsDTO(int defense, int flex, int offense) {
-        this.defense = defense;
-        this.flex = flex;
-        this.offense = offense;
-    }
-
-    public PerkStatsDTO() {
-
-    }
-
     public int getDefense() {
         return defense;
     }

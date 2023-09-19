@@ -4,12 +4,6 @@ public class MatchPositionDTO {
 
     private int y;
     private int x;
-
-    public MatchPositionDTO(int y, int x) {
-        this.y = y;
-        this.x = x;
-    }
-
     public int getY() {
         return y;
     }

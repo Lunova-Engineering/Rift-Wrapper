@@ -5,19 +5,6 @@ import com.lunova.riftwrapper.model.dto.DataTransferObject;
 public class ObjectivesDTO extends DataTransferObject {
     private ObjectiveDTO baron, champion, dragon, inhibitor, riftHerald, tower;
 
-    public ObjectivesDTO(ObjectiveDTO baron, ObjectiveDTO champion, ObjectiveDTO dragon, ObjectiveDTO inhibitor, ObjectiveDTO riftHerald, ObjectiveDTO tower) {
-        this.baron = baron;
-        this.champion = champion;
-        this.dragon = dragon;
-        this.inhibitor = inhibitor;
-        this.riftHerald = riftHerald;
-        this.tower = tower;
-    }
-
-    public ObjectivesDTO() {
-
-    }
-
     public ObjectiveDTO getBaron() {
         return baron;
     }

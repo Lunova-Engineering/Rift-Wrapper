@@ -11,17 +11,6 @@ public class TeamDTO extends DataTransferObject {
     private int teamId;
     private boolean win;
 
-    public TeamDTO(List<BanDTO> bans, ObjectivesDTO objectives, int teamId, boolean win) {
-        this.bans = bans;
-        this.objectives = objectives;
-        this.teamId = teamId;
-        this.win = win;
-    }
-
-    public TeamDTO() {
-
-    }
-
     public List<BanDTO> getBans() {
         return bans;
     }

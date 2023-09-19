@@ -1,8 +1,10 @@
 package com.lunova.riftwrapper.model.dto.match;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.lunova.riftwrapper.model.dto.DataTransferObject;
 
 public class MatchDTO extends DataTransferObject {
+    @JsonProperty("metadata")
     private MetaDataDTO metaData;
     private InfoDTO info;
 

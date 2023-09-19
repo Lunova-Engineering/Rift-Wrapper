@@ -1,17 +1,15 @@
 package com.lunova.riftwrapper.model.dto.match;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.lunova.riftwrapper.model.dto.DataTransferObject;
+
 import java.util.List;
 
-public class MatchTimelineDTO {
+public class MatchTimelineDTO extends DataTransferObject {
+    @JsonProperty("metadata")
     private MetaDataDTO metaData;
     private int frameInterval;
     private List<MatchFrameDTO> frames;
-
-    public MatchTimelineDTO(MetaDataDTO metaData, int frameInterval, List<MatchFrameDTO> frames) {
-        this.metaData = metaData;
-        this.frameInterval = frameInterval;
-        this.frames = frames;
-    }
 
     public MetaDataDTO getMetaDataDTO() {
         return metaData;

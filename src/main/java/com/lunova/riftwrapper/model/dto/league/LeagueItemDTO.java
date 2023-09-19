@@ -13,24 +13,6 @@ public class LeagueItemDTO {
     private int losses;
     private String summonerId;
 
-    public LeagueItemDTO(boolean freshBlood, int wins, String summonerName, MiniSeriesDTO miniSeries, boolean inactive, boolean veteran, boolean hotStreak, String rank, int leaguePoints, int losses, String summonerId) {
-        this.freshBlood = freshBlood;
-        this.wins = wins;
-        this.summonerName = summonerName;
-        this.miniSeries = miniSeries;
-        this.inactive = inactive;
-        this.veteran = veteran;
-        this.hotStreak = hotStreak;
-        this.rank = rank;
-        this.leaguePoints = leaguePoints;
-        this.losses = losses;
-        this.summonerId = summonerId;
-    }
-
-    public LeagueItemDTO() {
-
-    }
-
     public boolean isFreshBlood() {
         return freshBlood;
     }

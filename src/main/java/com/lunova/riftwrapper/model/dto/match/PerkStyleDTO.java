@@ -9,15 +9,6 @@ public class PerkStyleDTO extends DataTransferObject {
     private String description;
     private List<PerkStyleSelectionDTO> perkStyleSelections = new ArrayList<>(2);
 
-    public PerkStyleDTO(String description, List<PerkStyleSelectionDTO> perkStyleSelections) {
-        this.description = description;
-        this.perkStyleSelections.addAll(perkStyleSelections);
-    }
-
-    public PerkStyleDTO() {
-
-    }
-
     public String getDescription() {
         return description;
     }

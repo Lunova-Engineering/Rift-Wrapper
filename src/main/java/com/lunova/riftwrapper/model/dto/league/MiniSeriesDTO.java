@@ -6,17 +6,6 @@ public class MiniSeriesDTO {
     private int target;
     private int wins;
 
-    public MiniSeriesDTO(int losses, String progress, int target, int wins) {
-        this.losses = losses;
-        this.progress = progress;
-        this.target = target;
-        this.wins = wins;
-    }
-
-    public MiniSeriesDTO() {
-
-    }
-
     public int getLosses() {
         return losses;
     }

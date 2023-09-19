@@ -46,8 +46,6 @@ public class RiftWrapper {
         REGION = region;
     }
 
-
-
     public static Summoner summonerWithId(String id) {
         return getUserObject(SummonerAPI.getInstance(), new BaseEndpointStrategy(id), SummonerStrategy.getInstance());
     }

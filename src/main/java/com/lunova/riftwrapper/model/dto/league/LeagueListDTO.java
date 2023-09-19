@@ -11,18 +11,6 @@ public class LeagueListDTO extends DataTransferObject {
     private String name;
     private String queue;
 
-    public LeagueListDTO(String leagueId, List<LeagueItemDTO> entries, String tier, String name, String queue) {
-        this.leagueId = leagueId;
-        this.entries = entries;
-        this.tier = tier;
-        this.name = name;
-        this.queue = queue;
-    }
-
-    public LeagueListDTO() {
-
-    }
-
     public String getLeagueId() {
         return leagueId;
     }

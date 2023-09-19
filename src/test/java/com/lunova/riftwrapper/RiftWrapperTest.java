@@ -1,13 +1,16 @@
 package com.lunova.riftwrapper;
 
 import com.lunova.riftwrapper.model.data.Region;
+import com.lunova.riftwrapper.network.HttpRequest;
 
 public class RiftWrapperTest {
 
-    public static int place = 1;
     public static void main(String[] args) {
-        RiftWrapper.setRiotApiKey("RGAPI-949344b7-d56a-40a8-8922-f7ac31655321");
+        RiftWrapper.setRiotApiKey("RGAPI-460426c3-971e-484e-9903-1256d36d87ee");
         RiftWrapper.setRegion(Region.NORTH_AMERICA);
-
+        //String response = HttpRequest.sendRequest("https://americas.api.riotgames.com/lol/match/v5/matches/NA1_4772863715", RiftWrapper.RIOT_API_KEY);
+        String response = HttpRequest.sendRequest("https://americas.api.riotgames.com/lol/match/v5/matches/NA1_4772863715/timeline", RiftWrapper.RIOT_API_KEY);
+        
     }
+
 }

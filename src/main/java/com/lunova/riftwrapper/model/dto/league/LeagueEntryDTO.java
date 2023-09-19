@@ -8,27 +8,6 @@ public class LeagueEntryDTO extends DataTransferObject {
     private boolean hotStreak, veteran, freshBlood, inactive;
     private MiniSeriesDTO miniSeries;
 
-    public LeagueEntryDTO(String leagueId, String summonerId, String summonerName, String queueType, String tier, String rank, int leaguePoints, int wins, int losses, boolean hotStreak, boolean veteran, boolean freshBlood, boolean inactive, MiniSeriesDTO miniSeries) {
-        this.leagueId = leagueId;
-        this.summonerId = summonerId;
-        this.summonerName = summonerName;
-        this.queueType = queueType;
-        this.tier = tier;
-        this.rank = rank;
-        this.leaguePoints = leaguePoints;
-        this.wins = wins;
-        this.losses = losses;
-        this.hotStreak = hotStreak;
-        this.veteran = veteran;
-        this.freshBlood = freshBlood;
-        this.inactive = inactive;
-        this.miniSeries = miniSeries;
-    }
-
-    public LeagueEntryDTO() {
-
-    }
-
     public String getLeagueId() {
         return leagueId;
     }

@@ -9,12 +9,6 @@ public class MatchFrameDTO {
     private Map<String, MatchParticipantFrameDTO> participantFrames;
     private List<MatchEventDTO> events;
 
-    public MatchFrameDTO(long timestamp, Map<String, MatchParticipantFrameDTO> participantFrames, List<MatchEventDTO> events) {
-        this.timestamp = timestamp;
-        this.participantFrames = participantFrames;
-        this.events = events;
-    }
-
     public long getTimestamp() {
         return timestamp;
     }

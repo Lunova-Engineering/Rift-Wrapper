@@ -6,15 +6,6 @@ public class ObjectiveDTO extends DataTransferObject {
     private boolean first;
     private int kills;
 
-    public ObjectiveDTO(boolean first, int kills) {
-        this.first = first;
-        this.kills = kills;
-    }
-
-    public ObjectiveDTO() {
-
-    }
-
     public boolean isFirst() {
         return first;
     }

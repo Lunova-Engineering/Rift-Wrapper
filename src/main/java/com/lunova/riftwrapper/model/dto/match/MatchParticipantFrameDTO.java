@@ -13,19 +13,6 @@ public class MatchParticipantFrameDTO {
     private int xp;
     private int jungleMinionsKilled;
 
-    public MatchParticipantFrameDTO(int totalGold, int teamScore, int participantId, int level, int currentGold, int minionsKilled, int dominionScore, MatchPositionDTO position, int xp, int jungleMinionsKilled) {
-        this.totalGold = totalGold;
-        this.teamScore = teamScore;
-        this.participantId = participantId;
-        this.level = level;
-        this.currentGold = currentGold;
-        this.minionsKilled = minionsKilled;
-        this.dominionScore = dominionScore;
-        this.position = position;
-        this.xp = xp;
-        this.jungleMinionsKilled = jungleMinionsKilled;
-    }
-
     public int getTotalGold() {
         return totalGold;
     }

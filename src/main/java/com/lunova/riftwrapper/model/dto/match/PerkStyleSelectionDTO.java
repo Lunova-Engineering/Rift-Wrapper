@@ -5,17 +5,6 @@ import com.lunova.riftwrapper.model.dto.DataTransferObject;
 public class PerkStyleSelectionDTO extends DataTransferObject {
     private int perk, var1, var2, var3;
 
-    public PerkStyleSelectionDTO(int perk, int var1, int var2, int var3) {
-        this.perk = perk;
-        this.var1 = var1;
-        this.var2 = var2;
-        this.var3 = var3;
-    }
-
-    public PerkStyleSelectionDTO() {
-
-    }
-
     public int getPerk() {
         return perk;
     }

@@ -6,15 +6,6 @@ public class BanDTO extends DataTransferObject {
     private int championId;
     private int pickTurn;
 
-    public BanDTO(int championId, int pickTurn) {
-        this.championId = championId;
-        this.pickTurn = pickTurn;
-    }
-
-    public BanDTO() {
-
-    }
-
     public int getChampionId() {
         return championId;
     }
