@@ -11,7 +11,9 @@ public class SummonerStrategy implements DataStrategy<SummonerDTO, Summoner> {
     private static SummonerStrategy summonerStrategy;
 
     public static SummonerStrategy getInstance() {
-        return summonerStrategy == null ? new SummonerStrategy() : summonerStrategy;
+        if(summonerStrategy == null)
+            summonerStrategy = new SummonerStrategy();
+        return summonerStrategy;
     }
 
     @Override

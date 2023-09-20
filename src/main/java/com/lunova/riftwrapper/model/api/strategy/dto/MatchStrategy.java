@@ -11,7 +11,9 @@ public class MatchStrategy implements DataStrategy<MatchDTO, Match> {
     private static MatchStrategy matchStrategy;
 
     public static MatchStrategy getInstance() {
-        return matchStrategy == null ? new MatchStrategy() : matchStrategy;
+        if(matchStrategy == null)
+            matchStrategy = new MatchStrategy();
+        return matchStrategy;
     }
 
     @Override

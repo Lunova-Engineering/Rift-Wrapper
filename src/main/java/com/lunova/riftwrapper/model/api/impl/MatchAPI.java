@@ -13,7 +13,9 @@ public class MatchAPI extends RiotAPI {
     private static MatchAPI matchAPI;
 
     public static MatchAPI getInstance() {
-        return matchAPI == null ? new MatchAPI() : matchAPI;
+        if(matchAPI == null)
+            matchAPI = new MatchAPI();
+        return matchAPI;
     }
 
     @Override

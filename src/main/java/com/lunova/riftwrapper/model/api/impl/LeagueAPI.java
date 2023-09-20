@@ -11,7 +11,9 @@ public class LeagueAPI extends RiotAPI {
     private static LeagueAPI leagueAPI;
 
     public static LeagueAPI getInstance() {
-        return leagueAPI == null ? new LeagueAPI() : leagueAPI;
+        if(leagueAPI == null)
+            leagueAPI = new LeagueAPI();
+        return leagueAPI;
     }
 
     @Override

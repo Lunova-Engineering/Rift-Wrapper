@@ -11,7 +11,9 @@ public class SummonerAPI extends RiotAPI {
     private static SummonerAPI summonerAPI;
 
     public static SummonerAPI getInstance() {
-        return summonerAPI == null ? new SummonerAPI() : summonerAPI;
+        if(summonerAPI == null)
+            summonerAPI = new SummonerAPI();
+        return summonerAPI;
     }
 
     @Override

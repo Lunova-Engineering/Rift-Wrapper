@@ -11,7 +11,9 @@ public class MatchListStrategy implements DataStrategy<DataTransferObject.ListPr
     private static MatchListStrategy matchListStrategy;
 
     public static MatchListStrategy getInstance() {
-        return matchListStrategy == null ? new MatchListStrategy() : matchListStrategy;
+        if(matchListStrategy == null)
+            matchListStrategy = new MatchListStrategy();
+        return matchListStrategy;
     }
 
 

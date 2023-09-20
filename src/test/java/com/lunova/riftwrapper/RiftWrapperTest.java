@@ -40,10 +40,10 @@ public class RiftWrapperTest {
         ch.getEntries().forEach(p -> System.out.println("Name: " + p.getSummonerName() + "\nRank: " + (ch.getEntries().indexOf(p) + 1)+ "\nLP: " + p.getLeaguePoints() + "\n"));
         LeagueList gm = RiftWrapper.getGrandMasterLeagueByQueue(QueueType.RANKED_SOLO_5x5);
         gm.getEntries().sort(c);
-        gm.getEntries().forEach(p -> System.out.println("Name: " + p.getSummonerName() + "\nRank: " + (gm.getEntries().indexOf(p)) + "\nLP: " + p.getLeaguePoints() + "\n"));
+        gm.getEntries().forEach(p -> System.out.println("Name: " + p.getSummonerName() + "\nRank: " + (gm.getEntries().indexOf(p) + ch.getEntries().size() + 1) + "\nLP: " + p.getLeaguePoints() + "\n"));
         LeagueList m = RiftWrapper.getMasterLeagueByQueue(QueueType.RANKED_SOLO_5x5);
         m.getEntries().sort(c);
-        m.getEntries().forEach(p -> System.out.println("Name: " + p.getSummonerName() + "\nRank: " + (m.getEntries().indexOf(p)+1) + "\nLP: " + p.getLeaguePoints() + "\n"));
+        m.getEntries().forEach(p -> System.out.println("Name: " + p.getSummonerName() + "\nRank: " + (m.getEntries().indexOf(p)+ ch.getEntries().size() + gm.getEntries().size() + 1) + "\nLP: " + p.getLeaguePoints() + "\n"));
 
         System.out.println("Total players in Apex tiers - " + (NumberFormat.getInstance().format(ch.getEntries().size() + gm.getEntries().size() + m.getEntries().size())));
 /*        matchList.forEach(match -> Utilities.printValues(match.getInfo().getParticipants().stream()

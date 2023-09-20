@@ -13,7 +13,9 @@ public class LeagueEntryStrategy implements DataStrategy<DataTransferObject.SetP
     private static LeagueEntryStrategy leagueEntryStrategy;
 
     public static LeagueEntryStrategy getInstance() {
-        return leagueEntryStrategy == null ? new LeagueEntryStrategy() : leagueEntryStrategy;
+        if(leagueEntryStrategy == null)
+            leagueEntryStrategy = new LeagueEntryStrategy();
+        return leagueEntryStrategy;
     }
 
     @Override
