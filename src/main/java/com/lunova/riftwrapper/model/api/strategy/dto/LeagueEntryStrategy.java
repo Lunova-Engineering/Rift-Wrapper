@@ -1,18 +1,14 @@
 package com.lunova.riftwrapper.model.api.strategy.dto;
 
-import com.google.gson.reflect.TypeToken;
-import com.lunova.riftwrapper.model.api.strategy.CollectionDataStrategy;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.lunova.riftwrapper.model.api.strategy.DataStrategy;
+import com.lunova.riftwrapper.model.dto.DataTransferObject;
 import com.lunova.riftwrapper.model.dto.league.LeagueEntryDTO;
 import com.lunova.riftwrapper.model.transformers.LeagueTransformer;
+import com.lunova.riftwrapper.model.user.UserObject;
 import com.lunova.riftwrapper.model.user.league.LeagueEntry;
 
-import java.lang.reflect.Type;
-import java.util.Collection;
-import java.util.LinkedHashSet;
-import java.util.Set;
-import java.util.stream.Collectors;
-
-public class LeagueEntryStrategy implements CollectionDataStrategy<LeagueEntryDTO, LeagueEntry> {
+public class LeagueEntryStrategy implements DataStrategy<DataTransferObject.SetProxy<LeagueEntryDTO>, UserObject.SetProxy<LeagueEntry>> {
 
     private static LeagueEntryStrategy leagueEntryStrategy;
 
@@ -21,38 +17,29 @@ public class LeagueEntryStrategy implements CollectionDataStrategy<LeagueEntryDT
     }
 
     @Override
-    public Type getDTOCollectionType() {
-        return new TypeToken<LinkedHashSet<LeagueEntryDTO>>(){}.getType();
+    public TypeReference<DataTransferObject.SetProxy<LeagueEntryDTO>> getDeserializeType() {
+        return new TypeReference<DataTransferObject.SetProxy<LeagueEntryDTO>>(){};
     }
 
     @Override
-    public Collection<LeagueEntry> transform(Collection<LeagueEntryDTO> dataTransferObjectCollection) {
-        return dataTransferObjectCollection.stream().map(this::transform).collect(Collectors.toCollection(LinkedHashSet::new));
+    public DataTransferObject.SetProxy<LeagueEntryDTO> transform(UserObject.SetProxy<LeagueEntry> userObject) {
+        return LeagueTransformer.transform(userObject);
     }
 
     @Override
-    public Collection<LeagueEntry> getDefaultCollectionInstance() {
-        return Set.of(new LeagueEntry.Builder().build());
-    }
-
-    @Override
-    public Class<LeagueEntryDTO> getDTOClass() {
-        return LeagueEntryDTO.class;
-    }
-
-    @Override
-    public LeagueEntryDTO transform(LeagueEntry userObject) {
-        return null;
-        //return LeagueTransformer.transform(userObject);
-    }
-
-    @Override
-    public LeagueEntry transform(LeagueEntryDTO dataTransferObject) {
+    public UserObject.SetProxy<LeagueEntry> transform(DataTransferObject.SetProxy<LeagueEntryDTO> dataTransferObject) {
         return LeagueTransformer.transform(dataTransferObject);
     }
 
     @Override
-    public LeagueEntry getDefaultInstance() {
-        return new LeagueEntry.Builder().build();
+    public DataTransferObject.SetProxy<LeagueEntryDTO> getDefaultDataInstance() {
+        return new DataTransferObject.SetProxy<LeagueEntryDTO>();
     }
+
+    @Override
+    public UserObject.SetProxy<LeagueEntry> getDefaultUserInstance() {
+        return new UserObject.SetProxy<LeagueEntry>();
+    }
+
+
 }

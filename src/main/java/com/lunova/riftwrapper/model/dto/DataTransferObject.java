@@ -1,11 +1,16 @@
 package com.lunova.riftwrapper.model.dto;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.DeserializationFeature;
+import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.lunova.riftwrapper.utilities.Utilities;
 
+import java.io.IOException;
 import java.util.*;
+import java.util.function.Function;
 
 public class DataTransferObject {
 
@@ -197,25 +202,34 @@ public class DataTransferObject {
             data.clear();
         }
     }
-
-
-    public static <T> T fromJson(String json, Class<T> clazz) {
-        try {
-            return mapper.readValue(json, clazz);
-        } catch (JsonProcessingException e) {
-            throw new RuntimeException(e);
-        }
-    }
+    private static final ObjectMapper JSON_MAPPER = new ObjectMapper()
+            .disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES)
+            .setSerializationInclusion(JsonInclude.Include.NON_DEFAULT);
 
     public static <T> T fromJson(String json, TypeReference<T> typeReference) {
+        return fromJson(json, null, typeReference);
+    }
+
+    public static <T> T fromJson(String json, Function<JsonNode, JsonNode> preprocessor, TypeReference<T> typeReference) {
         try {
-            return mapper.readValue(json, typeReference);
+            if(preprocessor != null) {
+                JsonNode jsonTree = preprocessor.apply(mapper.readTree(json));
+                return mapper.readValue(mapper.treeAsTokens(jsonTree), typeReference);
+            } else
+                return mapper.readValue(json, typeReference);
         } catch (JsonProcessingException e) {
+            Utilities.getLogger().error("Unable to deserialize " + typeReference.getClass().getCanonicalName() + " to POJO.");
+            throw new RuntimeException(e);
+        } catch (IOException e) {
             throw new RuntimeException(e);
         }
     }
 
     public String toJson() {
+        return toJson(null);
+    }
+
+    public String toJson(Function<JsonNode, JsonNode> postprocessor) {
         try {
             return mapper.writeValueAsString(this);
         } catch (JsonProcessingException e) {

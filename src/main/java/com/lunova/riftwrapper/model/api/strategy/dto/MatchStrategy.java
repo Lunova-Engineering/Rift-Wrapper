@@ -1,11 +1,12 @@
 package com.lunova.riftwrapper.model.api.strategy.dto;
 
-import com.lunova.riftwrapper.model.api.strategy.SingleDataStrategy;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.lunova.riftwrapper.model.api.strategy.DataStrategy;
 import com.lunova.riftwrapper.model.dto.match.MatchDTO;
 import com.lunova.riftwrapper.model.transformers.MatchTransformer;
 import com.lunova.riftwrapper.model.user.match.Match;
 
-public class MatchStrategy implements SingleDataStrategy<MatchDTO, Match> {
+public class MatchStrategy implements DataStrategy<MatchDTO, Match> {
 
     private static MatchStrategy matchStrategy;
 
@@ -14,13 +15,12 @@ public class MatchStrategy implements SingleDataStrategy<MatchDTO, Match> {
     }
 
     @Override
-    public Class<MatchDTO> getDTOClass() {
-        return MatchDTO.class;
+    public TypeReference<MatchDTO> getDeserializeType() {
+        return new TypeReference<MatchDTO>(){};
     }
 
     @Override
     public MatchDTO transform(Match userObject) {
-
         return MatchTransformer.transform(userObject);
     }
 
@@ -30,7 +30,12 @@ public class MatchStrategy implements SingleDataStrategy<MatchDTO, Match> {
     }
 
     @Override
-    public Match getDefaultInstance() {
-        return null;
+    public MatchDTO getDefaultDataInstance() {
+        return new MatchDTO();
+    }
+
+    @Override
+    public Match getDefaultUserInstance() {
+        return new Match.Builder().build();
     }
 }

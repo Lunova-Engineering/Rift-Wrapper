@@ -1,11 +1,14 @@
 package com.lunova.riftwrapper.model.api.strategy.dto;
 
-import com.lunova.riftwrapper.model.api.strategy.SingleDataStrategy;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.lunova.riftwrapper.model.api.strategy.DataStrategy;
 import com.lunova.riftwrapper.model.dto.league.LeagueListDTO;
 import com.lunova.riftwrapper.model.transformers.LeagueTransformer;
 import com.lunova.riftwrapper.model.user.league.LeagueList;
 
-public class LeagueListStrategy implements SingleDataStrategy<LeagueListDTO, LeagueList> {
+import java.lang.reflect.Type;
+
+public class LeagueListStrategy implements DataStrategy<LeagueListDTO, LeagueList> {
 
     private static LeagueListStrategy leagueListStrategy;
 
@@ -14,8 +17,8 @@ public class LeagueListStrategy implements SingleDataStrategy<LeagueListDTO, Lea
     }
 
     @Override
-    public Class<LeagueListDTO> getDTOClass() {
-        return LeagueListDTO.class;
+    public TypeReference<LeagueListDTO> getDeserializeType() {
+        return new TypeReference<LeagueListDTO>() {};
     }
 
     @Override
@@ -29,7 +32,12 @@ public class LeagueListStrategy implements SingleDataStrategy<LeagueListDTO, Lea
     }
 
     @Override
-    public LeagueList getDefaultInstance() {
+    public LeagueListDTO getDefaultDataInstance() {
+        return new LeagueListDTO();
+    }
+
+    @Override
+    public LeagueList getDefaultUserInstance() {
         return new LeagueList.Builder().build();
     }
 }

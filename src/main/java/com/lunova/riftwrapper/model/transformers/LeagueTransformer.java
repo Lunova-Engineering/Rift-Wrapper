@@ -1,9 +1,11 @@
 package com.lunova.riftwrapper.model.transformers;
 
+import com.lunova.riftwrapper.model.dto.DataTransferObject;
 import com.lunova.riftwrapper.model.dto.league.LeagueEntryDTO;
 import com.lunova.riftwrapper.model.dto.league.LeagueItemDTO;
 import com.lunova.riftwrapper.model.dto.league.LeagueListDTO;
 import com.lunova.riftwrapper.model.dto.league.MiniSeriesDTO;
+import com.lunova.riftwrapper.model.user.UserObject;
 import com.lunova.riftwrapper.model.user.league.LeagueEntry;
 import com.lunova.riftwrapper.model.user.league.LeagueItem;
 import com.lunova.riftwrapper.model.user.league.LeagueList;
@@ -123,4 +125,15 @@ public class LeagueTransformer {
         return dto;
     }
 
+    public static DataTransferObject.SetProxy<LeagueEntryDTO> transform(UserObject.SetProxy<LeagueEntry> userObject) {
+        DataTransferObject.SetProxy<LeagueEntryDTO> setProxy = new DataTransferObject.SetProxy<>();
+        setProxy.addAll(userObject.stream().map(LeagueTransformer::transform).collect(Collectors.toSet()));
+        return setProxy;
+    }
+
+    public static UserObject.SetProxy<LeagueEntry> transform(DataTransferObject.SetProxy<LeagueEntryDTO> dataTransferObject) {
+        UserObject.SetProxy<LeagueEntry> setProxy = new UserObject.SetProxy<>();
+        setProxy.addAll(dataTransferObject.stream().map(LeagueTransformer::transform).collect(Collectors.toSet()));
+        return setProxy;
+    }
 }

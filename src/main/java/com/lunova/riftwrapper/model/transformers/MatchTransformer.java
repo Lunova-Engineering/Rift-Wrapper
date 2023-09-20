@@ -1,6 +1,8 @@
 package com.lunova.riftwrapper.model.transformers;
 
+import com.lunova.riftwrapper.model.dto.DataTransferObject;
 import com.lunova.riftwrapper.model.dto.match.*;
+import com.lunova.riftwrapper.model.user.UserObject;
 import com.lunova.riftwrapper.model.user.match.*;
 
 public class MatchTransformer {
@@ -446,6 +448,15 @@ public class MatchTransformer {
     }
 
 
+    public static DataTransferObject.ListProxy<String> transform(UserObject.ListProxy<String> userObject) {
+        DataTransferObject.ListProxy<String> listProxy = new DataTransferObject.ListProxy<>();
+        listProxy.addAll(userObject);
+        return listProxy;
+    }
 
-
+    public static UserObject.ListProxy<String> transform(DataTransferObject.ListProxy<String> dataTransferObject) {
+        UserObject.ListProxy<String> listProxy = new UserObject.ListProxy<>();
+        listProxy.addAll(dataTransferObject);
+        return listProxy;
+    }
 }

@@ -1,11 +1,12 @@
 package com.lunova.riftwrapper.model.api.strategy.dto;
 
-import com.lunova.riftwrapper.model.api.strategy.SingleDataStrategy;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.lunova.riftwrapper.model.api.strategy.DataStrategy;
 import com.lunova.riftwrapper.model.dto.summoner.SummonerDTO;
 import com.lunova.riftwrapper.model.transformers.SummonerTransformer;
 import com.lunova.riftwrapper.model.user.summoner.Summoner;
 
-public class SummonerStrategy implements SingleDataStrategy<SummonerDTO, Summoner> {
+public class SummonerStrategy implements DataStrategy<SummonerDTO, Summoner> {
 
     private static SummonerStrategy summonerStrategy;
 
@@ -14,8 +15,8 @@ public class SummonerStrategy implements SingleDataStrategy<SummonerDTO, Summone
     }
 
     @Override
-    public Class<SummonerDTO> getDTOClass() {
-        return SummonerDTO.class;
+    public TypeReference<SummonerDTO> getDeserializeType() {
+        return new TypeReference<SummonerDTO>() {};
     }
 
     @Override
@@ -29,7 +30,12 @@ public class SummonerStrategy implements SingleDataStrategy<SummonerDTO, Summone
     }
 
     @Override
-    public Summoner getDefaultInstance() {
+    public SummonerDTO getDefaultDataInstance() {
+        return new SummonerDTO();
+    }
+
+    @Override
+    public Summoner getDefaultUserInstance() {
         return new Summoner.Builder().build();
     }
 }

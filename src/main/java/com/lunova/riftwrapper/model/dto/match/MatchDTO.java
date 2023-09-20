@@ -8,15 +8,6 @@ public class MatchDTO extends DataTransferObject {
     private MetaDataDTO metaData;
     private InfoDTO info;
 
-    public MatchDTO(MetaDataDTO metaData, InfoDTO info) {
-        this.metaData = metaData;
-        this.info = info;
-    }
-
-    public MatchDTO() {
-
-    }
-
     public MetaDataDTO getMetaData() {
         return metaData;
     }
