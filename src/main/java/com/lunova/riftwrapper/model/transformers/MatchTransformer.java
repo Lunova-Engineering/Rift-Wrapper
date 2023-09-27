@@ -5,6 +5,9 @@ import com.lunova.riftwrapper.model.dto.match.*;
 import com.lunova.riftwrapper.model.user.UserObject;
 import com.lunova.riftwrapper.model.user.match.*;
 
+import java.util.Map;
+import java.util.stream.Collectors;
+
 public class MatchTransformer {
 
     public static Ban transform(BanDTO dto) {
@@ -447,16 +450,176 @@ public class MatchTransformer {
         return dto;
     }
 
+    public static MatchTimeline transform(MatchTimelineDTO dto) {
+        if (dto == null)
+            return new MatchTimeline.Builder().build();
+        MatchTimeline.Builder builder = new MatchTimeline.Builder();
+        builder.setMetaData(transform(dto.getMetaData()));
+        builder.setInfo(transform(dto.getInfo()));
+        return builder.build();
+    }
 
-    public static DataTransferObject.ListProxy<String> transform(UserObject.ListProxy<String> userObject) {
-        DataTransferObject.ListProxy<String> listProxy = new DataTransferObject.ListProxy<>();
+    public static MatchTimelineDTO transform(MatchTimeline userObject) {
+        MatchTimelineDTO dto = new MatchTimelineDTO();
+        dto.setMetaData(transform(userObject.getMetaData()));
+        dto.setInfo(transform(userObject.getInfo()));
+        return dto;
+    }
+
+    public static MatchEvent transform(MatchEventDTO dto) {
+        if (dto == null)
+            return new MatchEvent.Builder().build();
+        MatchEvent.Builder builder = new MatchEvent.Builder();
+        builder.setEventType(dto.getEventType());
+        builder.setTowerType(dto.getTowerType());
+        builder.setTeamId(dto.getTeamId());
+        builder.setAscendedType(dto.getAscendedType());
+        builder.setKillerId(dto.getKillerId());
+        builder.setLevelUpType(dto.getLevelUpType());
+        builder.setPointCaptured(dto.getPointCaptured());
+        builder.setAssistingParticipantIds(dto.getAssistingParticipantIds());
+        builder.setWardType(dto.getWardType());
+        builder.setMonsterType(dto.getMonsterType());
+        builder.setType(dto.getType());
+        builder.setSkillSlot(dto.getSkillSlot());
+        builder.setVictimId(dto.getVictimId());
+        builder.setTimestamp(dto.getTimestamp());
+        builder.setAfterId(dto.getAfterId());
+        builder.setMonsterSubType(dto.getMonsterSubType());
+        builder.setLaneType(dto.getLaneType());
+        builder.setItemId(dto.getItemId());
+        builder.setParticipantId(dto.getParticipantId());
+        builder.setBuildingType(dto.getBuildingType());
+        builder.setCreatorId(dto.getCreatorId());
+        builder.setPosition(transform(dto.getPosition()));
+        builder.setBeforeId(dto.getBeforeId());
+        return builder.build();
+    }
+
+    public static MatchEventDTO transform(MatchEvent userObject) {
+        MatchEventDTO dto = new MatchEventDTO();
+        dto.setEventType(userObject.getEventType());
+        dto.setTowerType(userObject.getTowerType());
+        dto.setTeamId(userObject.getTeamId());
+        dto.setAscendedType(userObject.getAscendedType());
+        dto.setKillerId(userObject.getKillerId());
+        dto.setLevelUpType(userObject.getLevelUpType());
+        dto.setPointCaptured(userObject.getPointCaptured());
+        dto.setAssistingParticipantIds(userObject.getAssistingParticipantIds());
+        dto.setWardType(userObject.getWardType());
+        dto.setMonsterType(userObject.getMonsterType());
+        dto.setType(userObject.getType());
+        dto.setSkillSlot(userObject.getSkillSlot());
+        dto.setVictimId(userObject.getVictimId());
+        dto.setTimestamp(userObject.getTimestamp());
+        dto.setAfterId(userObject.getAfterId());
+        dto.setMonsterSubType(userObject.getMonsterSubType());
+        dto.setLaneType(userObject.getLaneType());
+        dto.setItemId(userObject.getItemId());
+        dto.setParticipantId(userObject.getParticipantId());
+        dto.setBuildingType(userObject.getBuildingType());
+        dto.setCreatorId(userObject.getCreatorId());
+        dto.setPosition(transform(userObject.getPosition()));
+        dto.setBeforeId(userObject.getBeforeId());
+        return dto;
+    }
+
+    public static MatchTimelineInfo transform(MatchTimelineInfoDTO dto) {
+        if (dto == null)
+            return new MatchTimelineInfo.Builder().build();
+        MatchTimelineInfo.Builder builder = new MatchTimelineInfo.Builder();
+        builder.setFrameInterval(dto.getFrameInterval());
+        builder.setFrames(dto.getFrames().stream().map(MatchTransformer::transform).collect(Collectors.toList()));
+        return builder.build();
+    }
+
+    public static MatchTimelineInfoDTO transform(MatchTimelineInfo userObject) {
+        MatchTimelineInfoDTO dto = new MatchTimelineInfoDTO();
+        dto.setFrameInterval(userObject.getFrameInterval());
+        dto.setFrames(userObject.getFrames().stream().map(MatchTransformer::transform).collect(Collectors.toList()));
+        return dto;
+    }
+
+    public static MatchParticipantFrame transform(MatchParticipantFrameDTO dto) {
+        if (dto == null)
+            return new MatchParticipantFrame.Builder().build();
+        MatchParticipantFrame.Builder builder = new MatchParticipantFrame.Builder();
+        builder.setTotalGold(dto.getTotalGold());
+        builder.setTeamScore(dto.getTeamScore());
+        builder.setParticipantId(dto.getParticipantId());
+        builder.setLevel(dto.getLevel());
+        builder.setCurrentGold(dto.getCurrentGold());
+        builder.setMinionsKilled(dto.getMinionsKilled());
+        builder.setDominionScore(dto.getDominionScore());
+        builder.setPosition(transform(dto.getPosition()));
+        builder.setXp(dto.getXp());
+        builder.setJungleMinionsKilled(dto.getJungleMinionsKilled());
+        return builder.build();
+    }
+
+    public static MatchParticipantFrameDTO transform(MatchParticipantFrame userObject) {
+        MatchParticipantFrameDTO dto = new MatchParticipantFrameDTO();
+        dto.setTotalGold(userObject.getTotalGold());
+        dto.setTeamScore(userObject.getTeamScore());
+        dto.setParticipantId(userObject.getParticipantId());
+        dto.setLevel(userObject.getLevel());
+        dto.setCurrentGold(userObject.getCurrentGold());
+        dto.setMinionsKilled(userObject.getMinionsKilled());
+        dto.setDominionScore(userObject.getDominionScore());
+        dto.setPosition(transform(userObject.getPosition()));
+        dto.setXp(userObject.getXp());
+        dto.setJungleMinionsKilled(userObject.getJungleMinionsKilled());
+        return dto;
+    }
+
+    public static MatchFrame transform(MatchFrameDTO dto) {
+        if (dto == null)
+            return new MatchFrame.Builder().build();
+        MatchFrame.Builder builder = new MatchFrame.Builder();
+        builder.setTimestamp(dto.getTimestamp());
+        builder.setParticipantFrames(dto.getParticipantFrames().entrySet().stream()
+                .collect(Collectors.toMap(Map.Entry::getKey, e -> transform(e.getValue()))));
+        builder.setEvents(dto.getEvents().stream().map(MatchTransformer::transform).collect(Collectors.toList()));
+        return builder.build();
+    }
+
+    public static MatchFrameDTO transform(MatchFrame userObject) {
+        MatchFrameDTO dto = new MatchFrameDTO();
+        dto.setTimestamp(userObject.getTimestamp());
+        dto.setParticipantFrames(userObject.getParticipantFrames().entrySet().stream()
+                .collect(Collectors.toMap(Map.Entry::getKey, e -> transform(e.getValue()))));
+        dto.setEvents(userObject.getEvents().stream().map(MatchTransformer::transform).collect(Collectors.toList()));
+        return dto;
+    }
+
+    public static MatchPosition transform(MatchPositionDTO dto) {
+        if (dto == null)
+            return new MatchPosition.Builder().build();
+        MatchPosition.Builder builder = new MatchPosition.Builder();
+        builder.setY(dto.getY());
+        builder.setX(dto.getX());
+        return builder.build();
+    }
+
+    public static MatchPositionDTO transform(MatchPosition userObject) {
+        MatchPositionDTO dto = new MatchPositionDTO();
+        dto.setY(userObject.getY());
+        dto.setX(userObject.getX());
+        return dto;
+    }
+
+
+    public static <T> DataTransferObject.ListProxy<T> transform(UserObject.ListProxy<T> userObject) {
+        DataTransferObject.ListProxy<T> listProxy = new DataTransferObject.ListProxy<T>();
         listProxy.addAll(userObject);
         return listProxy;
     }
 
-    public static UserObject.ListProxy<String> transform(DataTransferObject.ListProxy<String> dataTransferObject) {
-        UserObject.ListProxy<String> listProxy = new UserObject.ListProxy<>();
+    public static <T> UserObject.ListProxy<T> transform(DataTransferObject.ListProxy<T> dataTransferObject) {
+        UserObject.ListProxy<T> listProxy = new UserObject.ListProxy<T>();
         listProxy.addAll(dataTransferObject);
         return listProxy;
     }
+
+
 }

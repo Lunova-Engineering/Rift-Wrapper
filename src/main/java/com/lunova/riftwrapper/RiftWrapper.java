@@ -18,6 +18,7 @@ import com.lunova.riftwrapper.model.user.UserObject;
 import com.lunova.riftwrapper.model.user.league.LeagueEntry;
 import com.lunova.riftwrapper.model.user.league.LeagueList;
 import com.lunova.riftwrapper.model.user.match.Match;
+import com.lunova.riftwrapper.model.user.match.MatchTimeline;
 import com.lunova.riftwrapper.model.user.summoner.Summoner;
 
 import java.util.List;
@@ -111,6 +112,10 @@ public class RiftWrapper {
 
     public static List<String> getMatchList(String puuid) {
         return getDataObject(MatchAPI.getInstance(), new BaseEndpointStrategy("by-puuid", puuid, "ids?"), MatchListStrategy.getInstance());
+    }
+
+    public static MatchTimeline getMatchTimeline(String matchId) {
+        return getDataObject(MatchAPI.getInstance(), new BaseEndpointStrategy(matchId, "timeline"), MatchTimelineStrategy.getInstance());
     }
 
     private static <DTO extends DataTransferObject, USER extends UserObject> USER getDataObject(RiotAPI api, EndpointStrategy endpointStrategy,
